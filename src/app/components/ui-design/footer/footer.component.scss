@@ -1,3 +1,28 @@
-.example-spacer {
-    flex: 1 1 auto;
+mat-toolbar {
+    height: 120px;
+}
+mat-toolbar-row {
+    margin: 30px auto;
+}
+
+.content {
+    height: 100%;
+    align-items: center;
+}
+
+.col-middle {
+    text-align: center;
+}
+.col-right {
+    text-align: center;
+}
+
+.icon {
+    width: 60px;
+}
+.my-name-text {
+    margin-left: 15px;
+}
+.plain-text {
+    font-size: small;
 }
