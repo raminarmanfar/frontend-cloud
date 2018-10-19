@@ -1,4 +1,6 @@
+import { SharedService } from './../../services/shared.service';
 import { Component } from '@angular/core';
+import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'sample-flex';
+  get subToolbarInfo (): SubtoolbarInfo { return SharedService.subToolbarInfo; }
 }

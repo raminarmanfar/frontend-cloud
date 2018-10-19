@@ -1,0 +1,23 @@
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+}
+
+mat-toolbar-row {
+    margin: 0;
+
+}
+
+.toolbar-image {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.btn-text {
+    font-size: large;
+    padding: 5px 15px 5px 15px;
+}

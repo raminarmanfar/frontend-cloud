@@ -1,15 +1,19 @@
-<div fxLayout='column' fxFlexFill class="main">
-    <div fxFlex="64px" [fxFlex.md]="box1Width" class="one">
+<div fxLayout='column' class="main">
+    <div fxFlex="33" [fxFlex.md]="box1Width" class="toolbar">
         <app-toolbar></app-toolbar>
     </div>
-    <div fxFlex="64px" [fxLayout]="direction" fxLayout.md="row" class="body">
-        <div fxFlex="22" fxFlex.md="10px" fxHide.xs class="navbar">Navbar</div>
-        <div fxFlex="205px" fxFlex.md="65" class="body-inside">Three</div>
-        <div fxFlex="30px" fxFlex.md="25" fxShow [fxHide.md]="hideBox" class="two_three">Four</div>
+    <div fxFlex="33" [fxFlex.md]="box1Width" class="sub-toolbar">
+        <app-sub-toolbar [info]="subToolbarInfo"></app-sub-toolbar>
+    </div>
+    <div fxFlex="33" [fxLayout]="direction" fxLayout.md="row" class="body">
+        <div fxFlex="33" fxFlex.md="200px" fxHide.xs fxHide.sm class="navbar">
+            <app-navbar></app-navbar>
+        </div>
+        <div fxFlex="33" fxFlex.md="90" class="body-inside">
+            <router-outlet></router-outlet>
+        </div>
     </div>
     <div fxFlex class="footer">
         <app-footer></app-footer>
     </div>
 </div>
-
-<router-outlet></router-outlet>
