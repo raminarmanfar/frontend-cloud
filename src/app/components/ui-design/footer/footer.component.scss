@@ -1,28 +1,19 @@
-mat-toolbar {
-    height: 120px;
-}
-mat-toolbar-row {
-    margin: 30px auto;
-}
-
-.content {
-    height: 100%;
-    align-items: center;
-}
-
-.col-middle {
+.container {
+    background-color: #3f51b5;
+    color: white;
     text-align: center;
-}
-.col-right {
-    text-align: center;
-}
-
-.icon {
-    width: 60px;
-}
-.my-name-text {
-    margin-left: 15px;
-}
-.plain-text {
+    padding: 10px;
     font-size: small;
+}
+
+.col {
+    flex: 1 1 5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-title {
+    padding-left: 15px;
 }
