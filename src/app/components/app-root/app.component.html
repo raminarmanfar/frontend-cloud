@@ -1,10 +1,12 @@
-<app-toolbar></app-toolbar>
 <div fxLayout='column' class="main">
-    <div fxFlex="25" class="sub-toolbar">
+    <div fxFlex="56px">
+        <app-toolbar></app-toolbar>
+    </div>
+    <div fxFlex="2" class="sub-toolbar">
         <app-sub-toolbar [info]="subToolbarInfo"></app-sub-toolbar>
     </div>
     <div fxFlex="25" [fxLayout]="direction" fxLayout.md="row" class="body">
-        <div fxFlex="50" fxFlex.md="200px" fxFlex.lg="200px" fxHide.xs fxHide.sm class="navbar">
+        <div fxFlex="50" fxFlex.md="200px" fxFlex.lg="200px" fxFlex.xl="200px" fxHide.xs fxHide.sm class="navbar">
             <app-navbar></app-navbar>
         </div>
         <div class="body-inside">
