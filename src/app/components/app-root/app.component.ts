@@ -1,6 +1,7 @@
 import { SharedService } from './../../services/shared.service';
 import { Component } from '@angular/core';
 import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,45 @@ import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  get subToolbarInfo (): SubtoolbarInfo { return SharedService.subToolbarInfo; }
+  get subToolbarInfo(): SubtoolbarInfo { return SharedService.subToolbarInfo; }
+  set subToolbarInfo(subtoolbarInfo: SubtoolbarInfo) { SharedService.subToolbarInfo = subtoolbarInfo; }
+
+  constructor(private router: Router) {
+    this.onRouteChange();
+  }
+
+  private onRouteChange() {
+    this.router.events.subscribe(val => {
+      // see also 
+      if (val instanceof NavigationEnd) {
+        console.log(val.url);
+        switch (val.url) {
+          case '/':
+            this.subToolbarInfo.title = 'Welcome to my personal website!';
+            this.subToolbarInfo.subTitle = '';
+            break;
+          case '/public/projects':
+            this.subToolbarInfo.title = 'Projects';
+            this.subToolbarInfo.subTitle = 'List of my programming projects.';
+            break;
+          case '/public/goals':
+            this.subToolbarInfo.title = 'Goals';
+            this.subToolbarInfo.subTitle = 'My goals and vision.';
+            break;
+          case '/public/about-me':
+            this.subToolbarInfo.title = 'About me';
+            this.subToolbarInfo.subTitle = 'Briefly about me.';
+            break;
+          case '/public/contact-me':
+            this.subToolbarInfo.title = 'Contact me';
+            this.subToolbarInfo.subTitle = 'Ways you can contact me.';
+            break;
+          default:
+            this.subToolbarInfo.title = 'The page is under construction.';
+            this.subToolbarInfo.subTitle = 'Thanks for your patient.';
+            break;
+        }
+      }
+    });
+  }
 }
