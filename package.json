@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "startproxy": "ng serve --proxy-config proxy.conf.json",
     "build": "rimraf dist && ng build",
     "test": "ng test",
     "lint": "ng lint",

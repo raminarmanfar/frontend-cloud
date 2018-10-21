@@ -20,7 +20,6 @@ export class AppComponent {
     this.router.events.subscribe(val => {
       // see also 
       if (val instanceof NavigationEnd) {
-        console.log(val.url);
         switch (val.url) {
           case '/':
             this.subToolbarInfo.title = 'Welcome to my personal website!';
