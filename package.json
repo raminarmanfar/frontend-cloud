@@ -1,6 +1,6 @@
 {
-  "name": "sample-flex",
-  "version": "0.0.0",
+  "name": "frontend-cloud-app",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
