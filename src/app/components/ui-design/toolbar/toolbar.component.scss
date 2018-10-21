@@ -1,15 +1,17 @@
 .mat-toolbar.mat-primary {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
 }
 
 mat-toolbar-row {
     margin: 0;
-
 }
 
 .toolbar-image {
-    width: 40px;
+    width: 30px;
     margin-right: 10px;
 }
 
