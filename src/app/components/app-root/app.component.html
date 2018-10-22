@@ -1,6 +1,6 @@
 <div fxLayout='column' class="main">
     <div fxFlex="56px">
-        <app-toolbar></app-toolbar>
+        <app-toolbar [isLoggedIn]="isLoggedIn" (mobListClick)="mobListClick()"></app-toolbar>
     </div>
     <div fxFlex="2" class="sub-toolbar">
         <app-sub-toolbar [info]="subToolbarInfo"></app-sub-toolbar>
@@ -17,3 +17,5 @@
         <app-footer></app-footer>
     </div>
 </div>
+
+<app-mobile-navbar [isListBtnClick]="isListBtnClick"></app-mobile-navbar>

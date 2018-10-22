@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Login</h1>
+<div mat-dialog-content>
+    <p>Please enter your credential to login.</p>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required>
+        <mat-error *ngIf="username.hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required>
+        <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions>
+    <button class="btns" mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <button class="btns" mat-raised-button color="primary" [mat-dialog-close]="'yes'" cdkFocusInitial>Login</button>
+</div>
+<div class="links-container">
+    <a href="#">Register</a>
+    <a href="#" class="forget-pass">Forget password?</a>
+</div>

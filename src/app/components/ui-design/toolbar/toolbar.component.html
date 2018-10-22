@@ -1,9 +1,9 @@
 <mat-toolbar class="toolbar" color="primary" [class.mat-elevation-z2]="false" [class.mat-elevation-z6]="true">
     <mat-toolbar-row>
         <div fxHide.md fxHide.lg class="icon-spacer">
-            <button mat-icon-button>
-                <fa-icon [icon]="['fas', 'bars']" size="lg"></fa-icon>
-            </button>
+            <button mat-icon-button (click)="onMobListClick()">
+        <fa-icon [icon]="['fas', 'bars']" size="lg"></fa-icon>
+      </button>
         </div>
         <div fxHide.xs fxHide.sm>
             <img class="toolbar-image" src="assets/images/programmer.png" alt="Programmer">
@@ -11,10 +11,37 @@
         <button mat-button [routerLink]="['/']" class="btn-text">Ramin Armanfar</button>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button class="icon-spacer">
-            <fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon>
-        </button>
-        <button mat-icon-button class="btn-icon">
-            <fa-icon [icon]="['fas', 'sign-in-alt']" size="lg"></fa-icon>
-        </button>
+      <fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon>
+    </button>
+        <button *ngIf="!isLoggedIn" mat-icon-button class="btn-icon">
+      <fa-icon [icon]="['fas', 'sign-in-alt']" size="lg" (click)="onLoginClick()"></fa-icon>
+    </button>
+
+        <div *ngIf="isLoggedIn">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+        <fa-icon [icon]="['fas', 'ellipsis-v']" size="lg"></fa-icon>
+      </button>
+            <div>
+                <mat-menu #menu="matMenu">
+                    <div id="username-div">
+                        <fa-icon [icon]="['fas', 'user']" size="lg"></fa-icon>
+                        <span class="menu-item-text">Username</span>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item>
+            <fa-icon [icon]="['fas', 'address-card']" size="lg"></fa-icon>
+            <span class="menu-item-text">Your Information</span>
+          </button>
+                    <button mat-menu-item>
+            <fa-icon [icon]="['fas', 'key']" size="lg"></fa-icon>
+            <span class="menu-item-text">Change Password</span>
+          </button>
+                    <button mat-menu-item>
+            <fa-icon [icon]="['fas', 'sign-out-alt']" size="lg"></fa-icon>
+            <span class="menu-item-text" (click)="onLogoutClick()">Logout</span>
+          </button>
+                </mat-menu>
+            </div>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>

@@ -1,4 +1,8 @@
 import { NgModule } from '@angular/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 import {
   MatAutocompleteModule,
   MatCheckboxModule,
@@ -38,6 +42,10 @@ import {
 
 @NgModule({
   imports: [
+    DragDropModule,
+    ScrollingModule,
+    CdkTableModule,
+    CdkTreeModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -74,6 +82,10 @@ import {
     MatTableModule,
   ],
   exports: [
+    DragDropModule,
+    ScrollingModule,
+    CdkTableModule,
+    CdkTreeModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,

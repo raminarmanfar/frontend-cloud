@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -19,8 +20,21 @@ import { FooterComponent } from './components/ui-design/footer/footer.component'
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { DialogComponent } from './components/ui-design/dialog/dialog.component';
+import { PopupLoginComponent } from './components/popup-login/popup-login.component';
+import { MobileNavbarComponent } from './components/ui-design/mobile-navbar/mobile-navbar.component';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    AppMaterialsModule,
+    FontAwesomeModule,
+  ],
   declarations: [
     AppComponent,
     ToolbarComponent,
@@ -29,14 +43,13 @@ import { UnderConstructionComponent } from './components/under-construction/unde
     SubToolbarComponent,
     WelcomeComponent,
     UnderConstructionComponent,
+    DialogComponent,
+    PopupLoginComponent,
+    MobileNavbarComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    AppMaterialsModule,
-    FontAwesomeModule,
+  entryComponents: [
+    PopupLoginComponent,
+    DialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

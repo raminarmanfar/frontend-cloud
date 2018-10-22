@@ -1,7 +1,7 @@
-import { SharedService } from './../../services/shared.service';
 import { Component } from '@angular/core';
 import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
 import { Router, NavigationEnd } from '@angular/router';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +9,23 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isListBtnClick: boolean;
   get subToolbarInfo(): SubtoolbarInfo { return SharedService.subToolbarInfo; }
   set subToolbarInfo(subtoolbarInfo: SubtoolbarInfo) { SharedService.subToolbarInfo = subtoolbarInfo; }
+  get isLoggedIn(): boolean { return SharedService.isLoggedIn; }
 
   constructor(private router: Router) {
     this.onRouteChange();
+    this.isListBtnClick = false;
+  }
+
+  mobListClick() {
+    this.isListBtnClick = true;
   }
 
   private onRouteChange() {
     this.router.events.subscribe(val => {
-      // see also 
+      // see also
       if (val instanceof NavigationEnd) {
         switch (val.url) {
           case '/':
