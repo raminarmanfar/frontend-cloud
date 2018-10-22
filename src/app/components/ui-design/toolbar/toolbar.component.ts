@@ -10,12 +10,13 @@ import { SharedService } from '../../../services/shared.service';
 })
 export class ToolbarComponent {
   @Input() isLoggedIn: boolean;
-  @Output() mobListClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() mobBtnClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 
   private username: string;
   private password: string;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) { }
 
   onLoginClick() {
       const dialogRef = this.dialog.open(PopupLoginComponent, {
@@ -32,6 +33,6 @@ export class ToolbarComponent {
     }
 
     onMobListClick() {
-      this.mobListClick.emit('nothing yet.');
+      this.mobBtnClick.emit(true);
     }
 }

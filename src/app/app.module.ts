@@ -22,7 +22,6 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { DialogComponent } from './components/ui-design/dialog/dialog.component';
 import { PopupLoginComponent } from './components/popup-login/popup-login.component';
-import { MobileNavbarComponent } from './components/ui-design/mobile-navbar/mobile-navbar.component';
 
 @NgModule({
   imports: [
@@ -45,7 +44,6 @@ import { MobileNavbarComponent } from './components/ui-design/mobile-navbar/mobi
     UnderConstructionComponent,
     DialogComponent,
     PopupLoginComponent,
-    MobileNavbarComponent,
   ],
   entryComponents: [
     PopupLoginComponent,

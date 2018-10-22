@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { MenuItem } from 'src/app/models/MenuItem';
+import { MatSidenav, MatDrawer } from '@angular/material';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
 import { Router, NavigationEnd } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
@@ -9,18 +12,33 @@ import { SharedService } from '../../services/shared.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isListBtnClick: boolean;
+  @ViewChild('snav') snav: MatSidenav;
+  @ViewChild('drawer') drawer: MatDrawer;
   get subToolbarInfo(): SubtoolbarInfo { return SharedService.subToolbarInfo; }
   set subToolbarInfo(subtoolbarInfo: SubtoolbarInfo) { SharedService.subToolbarInfo = subtoolbarInfo; }
   get isLoggedIn(): boolean { return SharedService.isLoggedIn; }
 
-  constructor(private router: Router) {
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+  get menuItems(): Array<MenuItem> { return SharedService.sideMenuList; }
+
+  constructor(
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
+    private media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
     this.onRouteChange();
-    this.isListBtnClick = false;
   }
 
-  mobListClick() {
-    this.isListBtnClick = true;
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  mobBtnClick() {
+    this.snav.toggle();
   }
 
   private onRouteChange() {

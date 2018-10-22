@@ -1,7 +1,5 @@
 <mat-action-list>
-    <button mat-button [routerLink]="['/']">Home</button>
-    <button mat-button [routerLink]="['/public/projects']">Projects</button>
-    <button mat-button [routerLink]="['/public/goals']">Goals</button>
-    <button mat-button [routerLink]="['/public/about-me']">About Me</button>
-    <button mat-button [routerLink]="['/public/contact-me']">Contact Me</button>
+    <div *ngFor="let item of menuItems">
+        <button mat-button [routerLink]="[item.url]">{{ item.title }}</button>
+    </div>
 </mat-action-list>
