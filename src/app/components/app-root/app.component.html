@@ -1,3 +1,4 @@
+<app-toolbar [isLoggedIn]="isLoggedIn" (mobBtnClick)="mobBtnClick()"></app-toolbar>
 <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="56" [hasBackdrop]="true">
     <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
@@ -8,7 +9,6 @@
     <mat-sidenav-content class="side-nav-content">
         <div fxLayout='column' class="main">
             <div fxFlex="0px">
-                <app-toolbar [isLoggedIn]="isLoggedIn" (mobBtnClick)="mobBtnClick()"></app-toolbar>
             </div>
             <div fxFlex="2" class="sub-toolbar">
                 <app-sub-toolbar [info]="subToolbarInfo"></app-sub-toolbar>

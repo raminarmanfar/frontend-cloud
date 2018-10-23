@@ -1,3 +1,78 @@
-<p>
-  contact-me works!
-</p>
+<div class="content" fxLayout="column" fxFlex="600px" fxFlex.xs="100%" fxFlexFill>
+    <div>
+        <h3>Please fill in the following form to contact me</h3>
+    </div>
+    <div>
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value)">
+            <mat-form-field>
+                <input type="text" matInput placeholder="First Name" ngModel name="firstName" required #firstName="ngModel">
+                <mat-error *ngIf="firstName.hasError('required')">
+                    First name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input type="text" matInput placeholder="Last Name" ngModel name="lastName" required #lastName="ngModel">
+                <mat-error *ngIf="lastName.hasError('required')">
+                    Last name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input matInput placeholder="Email" ngModel name="email" required #email="ngModel">
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <textarea matInput placeholder="Subject" ngModel name="subject" required #subject="ngModel"></textarea>
+                <mat-error *ngIf="subject.hasError('required')">
+                    Subject is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary">Submit</button>
+        </form>
+    </div>
+    <mat-divider style="margin-top: 20px;"></mat-divider>
+    <div>
+        <h3>Other ways that you can contact me</h3>
+    </div>
+    <div style="margin: 0 auto">
+        <div fxLayout="row" fxLayout.xs="column" fxFlex="100%" fxFlexFill>
+            <div class="contact-items">
+                <a target="blank" href="https://de.linkedin.com/in/ramin-armanfar" matTooltip="LinkedIn">
+                    <img class="icons" src="assets/images/linkedin.png" alt="linkedin">
+                </a>
+            </div>
+            <div class="contact-items">
+                <a target="blank" href="https://www.xing.com/profile/Ramin_Armanfar" matTooltip="Xing">
+                    <img class="icons" src="assets/images/xing.png" alt="xing">
+                </a>
+            </div>
+            <div class="contact-items">
+                <a target="blank" href="https://github.com/raminarmanfar?tab=activity" matTooltip="Github">
+                    <img class="icons" src="assets/images/github.png" alt="github">
+                </a>
+            </div>
+            <div class="contact-items">
+                <a target="blank" href="https://twitter.com/raminarmanfar" matTooltip="Twitter">
+                    <img class="icons" src="assets/images/twitter.png" alt="twitter">
+                </a>
+            </div>
+            <div class="contact-items">
+                <a target="blank" href="http://myweb.sabanciuniv.edu/raminarmanfar/" matTooltip="My personal page in the university">
+                    <img class="icons" src="assets/images/sabanci.jpg" alt="sabanciuniv">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="contact-items">
+        <a href="mailto:ramin.armanfar@gmail.com" matTooltip="ramin.armanfar@gmail.com">
+            <p>Email: ramin.armanfar@gmail.com</p>
+        </a>
+    </div>
+</div>

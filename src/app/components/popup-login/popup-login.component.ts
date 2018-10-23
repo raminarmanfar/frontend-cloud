@@ -2,6 +2,7 @@ import { SharedService } from './../../services/shared.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../../models/DialogData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-popup-login',
@@ -10,11 +11,18 @@ import { DialogData } from '../../models/DialogData';
 })
 export class PopupLoginComponent {
 
-  constructor(private dialogRef: MatDialogRef<PopupLoginComponent>,
+  constructor(
+    private router: Router,
+    private dialogRef: MatDialogRef<PopupLoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   onCancelClick () {
     SharedService.isLoggedIn = true;
     this.dialogRef.close();
+  }
+
+  onLinkClick(linkUrl: string) {
+    this.dialogRef.close();
+    this.router.navigate([linkUrl]);
   }
 }

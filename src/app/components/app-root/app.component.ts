@@ -1,17 +1,17 @@
-import { MenuItem } from 'src/app/models/MenuItem';
 import { MatSidenav, MatDrawer } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, OnDestroy } from '@angular/core';
 import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
 import { Router, NavigationEnd } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
+import { MenuItem } from 'src/app/models/MenuItem';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   @ViewChild('snav') snav: MatSidenav;
   @ViewChild('drawer') drawer: MatDrawer;
   get subToolbarInfo(): SubtoolbarInfo { return SharedService.subToolbarInfo; }

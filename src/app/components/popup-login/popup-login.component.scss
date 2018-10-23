@@ -11,6 +11,14 @@
     width: 100px;
 }
 
-.forget-pass {
+.forget-pass-spacer {
     float: right;
+}
+
+.links {
+    cursor: pointer;
+}
+
+.links:hover {
+    color: blue;
 }

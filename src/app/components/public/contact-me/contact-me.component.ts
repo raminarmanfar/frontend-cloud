@@ -12,4 +12,7 @@ export class ContactMeComponent implements OnInit {
   ngOnInit() {
   }
 
+  submit(contactInfo) {
+    console.log(contactInfo);
+  }
 }

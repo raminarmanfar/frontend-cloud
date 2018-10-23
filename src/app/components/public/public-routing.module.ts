@@ -1,10 +1,11 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects/projects.component';
 import { GoalsComponent } from './goals/goals.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ContactMeComponent } from './contact-me/contact-me.component';
 import { AboutMeComponent } from './about-me/about-me.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'register-user',
     component: RegisterComponent
+  },
+  {
+    path: 'forget-passowrd',
+    component: ForgetPasswordComponent
   },
   {
     path: 'goals',
