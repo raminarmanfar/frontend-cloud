@@ -6,23 +6,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppMaterialsModule } from './app-material-module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(fas, far);
 
+import { ContactService } from './services/contact.service';
+
 import { AppComponent } from './components/app-root/app.component';
 import { ToolbarComponent } from './components/ui-design/toolbar/toolbar.component';
 import { SubToolbarComponent } from './components/ui-design/sub-toolbar/sub-toolbar.component';
 import { NavbarComponent } from './components/ui-design/navbar/navbar.component';
 import { FooterComponent } from './components/ui-design/footer/footer.component';
-
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { DialogComponent } from './components/ui-design/dialog/dialog.component';
 import { PopupLoginComponent } from './components/popup-login/popup-login.component';
-import { ContactService } from './services/contact.service';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { ContactService } from './services/contact.service';
     FlexLayoutModule,
     AppMaterialsModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
   declarations: [
     AppComponent,

@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
-        "start-proxy": "ng serve --proxy-config proxy.conf.json",
+        "start-norm": "ng serve",
+        "start": "ng serve --proxy-config proxy.config.json",
         "build": "rimraf dist && ng build",
         "test": "ng test",
         "lint": "ng lint",
