@@ -1,6 +1,9 @@
 {
-    "/api": {
-      "target": "http://raminarmanfar.com/server/api",
-      "secure": false
+    "/api/": {
+        "target": "localhost:5000/api/",
+        "secure": false,
+        "pathRewrite": {
+            "^/api/": ""
+        }
     }
-  }
+}

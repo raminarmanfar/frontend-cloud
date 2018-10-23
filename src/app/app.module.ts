@@ -22,6 +22,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { DialogComponent } from './components/ui-design/dialog/dialog.component';
 import { PopupLoginComponent } from './components/popup-login/popup-login.component';
+import { ContactService } from './services/contact.service';
 
 @NgModule({
   imports: [
@@ -49,7 +50,9 @@ import { PopupLoginComponent } from './components/popup-login/popup-login.compon
     PopupLoginComponent,
     DialogComponent,
   ],
-  providers: [],
+  providers: [
+    ContactService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
