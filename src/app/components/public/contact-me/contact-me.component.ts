@@ -1,6 +1,6 @@
 import { ServiceResponse } from './../../../models/ServiceResponse';
-import { MatDialog } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatInput } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
 import { DialogComponent } from '../../ui-design/dialog/dialog.component';
 
@@ -26,7 +26,7 @@ export class ContactMeComponent implements OnInit {
       }
 
       const dialogRef = this.dialog.open(DialogComponent, {
-        width: '400px',
+        width: '350px',
         data: popupData
       });
 

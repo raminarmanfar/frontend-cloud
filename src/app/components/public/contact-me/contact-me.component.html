@@ -3,7 +3,7 @@
         <h3>Please fill in the following form to contact me</h3>
     </div>
     <div>
-        <form #frm="ngForm" (ngSubmit)="submit(frm.value)">
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value, firstName)">
             <mat-form-field>
                 <input type="text" matInput placeholder="First Name" ngModel name="firstName" required #firstName="ngModel">
                 <mat-error *ngIf="firstName.hasError('required')">
@@ -34,7 +34,7 @@
                     Subject is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
-            <button type="submit" mat-raised-button color="primary">Submit</button>
+            <button type="reset" mat-raised-button color="primary" (click)="submit(frm.value, firstName)">Submit</button>
         </form>
     </div>
     <mat-divider style="margin-top: 20px;"></mat-divider>
