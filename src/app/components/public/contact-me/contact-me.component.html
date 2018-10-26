@@ -42,30 +42,10 @@
         <h3>Other ways that you can contact me</h3>
     </div>
     <div style="margin: 0 auto">
-        <div fxLayout="row" fxLayout.xs="column" fxFlex="100%" fxFlexFill>
-            <div class="contact-items">
-                <a target="blank" href="https://de.linkedin.com/in/ramin-armanfar" matTooltip="LinkedIn">
-                    <img class="icons" src="assets/images/linkedin.png" alt="linkedin">
-                </a>
-            </div>
-            <div class="contact-items">
-                <a target="blank" href="https://www.xing.com/profile/Ramin_Armanfar" matTooltip="Xing">
-                    <img class="icons" src="assets/images/xing.png" alt="xing">
-                </a>
-            </div>
-            <div class="contact-items">
-                <a target="blank" href="https://github.com/raminarmanfar?tab=activity" matTooltip="Github">
-                    <img class="icons" src="assets/images/github.png" alt="github">
-                </a>
-            </div>
-            <div class="contact-items">
-                <a target="blank" href="https://twitter.com/raminarmanfar" matTooltip="Twitter">
-                    <img class="icons" src="assets/images/twitter.png" alt="twitter">
-                </a>
-            </div>
-            <div class="contact-items">
-                <a target="blank" href="http://myweb.sabanciuniv.edu/raminarmanfar/" matTooltip="My personal page in the university">
-                    <img class="icons" src="assets/images/sabanci.jpg" alt="sabanciuniv">
+        <div fxLayout="row" fxLayout.xs="column" fxFlex="100%" fxFlexFill *ngFor="let item of icons">
+            <div class="contact-items hvr-float-shadow" matTooltip="{{ item.tooltip }}" matTooltipPosition="above">
+                <a target="blank" href="{{ item.url }}">
+                    <img class="icons" src="assets/images/{{ item.image }}" alt="{{ item.image }}">
                 </a>
             </div>
         </div>

@@ -1,26 +1,32 @@
-<h1 mat-dialog-title>Login</h1>
-<div mat-dialog-content>
-    <p>Please enter your credential to login.</p>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required>
-        <mat-error *ngIf="username.hasError('required')">
-            Email is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
+<div class="container">
+    <h1 mat-dialog-title>Login</h1>
+    <div mat-dialog-content class="mainDiv">
+        <p>Please enter your credential to login.</p>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required>
+            <mat-error *ngIf="username.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
 
-    <mat-form-field class="full-width">
-        <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required>
-        <mat-error *ngIf="password.hasError('required')">
-            Password is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-</div>
-<mat-divider></mat-divider>
-<div mat-dialog-actions>
-    <button class="btns" mat-raised-button (click)="onCancelClick()">Cancel</button>
-    <button class="btns" mat-raised-button color="primary" [mat-dialog-close]="userLoginInfo()" cdkFocusInitial>Login</button>
-    <div class="links-container">
-        <a (click)="onLinkClick('register-user')" class="links">Register</a>
-        <a (click)="onLinkClick('forget-passowrd')" class="links forget-pass-spacer">Forget password?</a>
+        <mat-form-field class="full-width">
+            <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required>
+            <mat-error *ngIf="password.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div *ngIf="error">
+        <p class="errMessage">Error: {{ error.message }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+        <button class="btns" mat-raised-button (click)="onCancelClick()">Cancel</button>
+        <button class="btns" mat-raised-button color="primary" (click)="loginClick(username.value, password.value)"
+            cdkFocusInitial>Login</button>
+        <div class="links-container">
+            <a (click)="onLinkClick('register-user')" class="links">Register</a>
+            <a (click)="onLinkClick('forget-passowrd')" class="links forget-pass-spacer">Forget password?</a>
+        </div>
     </div>
 </div>

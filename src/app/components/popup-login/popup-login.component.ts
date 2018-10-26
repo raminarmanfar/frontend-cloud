@@ -1,8 +1,9 @@
-import { SharedService } from './../../services/shared.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../../models/DialogData';
-import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { ServiceResponse } from '../../models/ServiceResponse';
 
 @Component({
   selector: 'app-popup-login',
@@ -10,15 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./popup-login.component.scss']
 })
 export class PopupLoginComponent {
+  private error: any = undefined;
 
   constructor(
+    private userService: UserService,
     private router: Router,
     private dialogRef: MatDialogRef<PopupLoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-    userLoginInfo() {
-
-    }
+  loginClick(usernameOrEmail: string, password: string) {
+      const a = this.userService.login(usernameOrEmail, password);
+      a.subscribe((result: ServiceResponse) => {
+        console.log(result);
+        this.dialogRef.close(result);
+      }, (errObj: any)=> {
+        this.error = errObj.error;
+      });
+  }
     
   onCancelClick () {
     this.dialogRef.close();

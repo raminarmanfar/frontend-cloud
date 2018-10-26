@@ -3,7 +3,7 @@
 }
 
 .links-container {
-    margin-top: 30px;
+    margin-top: 15px;
     width: 100%;
 }
 
@@ -21,4 +21,17 @@
 
 .links:hover {
     color: blue;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 5px 0;
+}
+
+.errMessage {
+    color: red;
 }

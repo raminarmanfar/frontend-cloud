@@ -1,4 +1,5 @@
-import { AppMaterialsModule } from './../../app-material-module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AppMaterialsModule } from '../../app-material-module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -13,6 +14,9 @@ import { ContactMeComponent } from './contact-me/contact-me.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { GoalsComponent } from './goals/goals.component';
 
+import { UniqueValidatorDirective } from '../../utils/UniqueValidator.directive';
+import { PasswordValidatorDirective } from '../../utils/PasswordValidator.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,8 +25,12 @@ import { GoalsComponent } from './goals/goals.component';
     AppMaterialsModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   declarations: [
+    UniqueValidatorDirective,
+    PasswordValidatorDirective,
+
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,

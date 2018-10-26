@@ -2,7 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PopupLoginComponent } from '../../popup-login/popup-login.component';
 import { MatDialog } from '@angular/material';
 import { SharedService } from '../../../services/shared.service';
-import { UsersService } from '../../../services/users.service';
+import { UserService } from '../../../services/user.service';
+import { ServiceResponse } from 'src/app/models/ServiceResponse';
 
 @Component({
   selector: 'app-toolbar',
@@ -19,7 +20,7 @@ export class ToolbarComponent {
 
   constructor(
     private dialog: MatDialog,
-    private usersService: UsersService
+    private userService: UserService
     ) { }
 
   onLoginClick() {
@@ -28,10 +29,9 @@ export class ToolbarComponent {
         data: {username: this.username, password: this.password }
       });
 
-      dialogRef.afterClosed().subscribe(userLogin => {
-        if (doLogin) {
-          this.usersService.login()
-        }
+      dialogRef.afterClosed().subscribe((result: ServiceResponse) => {
+        console.log('result after dialog closed:', result);
+        SharedService.isLoggedIn = true;
       });
     }
 

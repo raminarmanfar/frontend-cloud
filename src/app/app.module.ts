@@ -14,6 +14,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(fas, far);
 
 import { ContactService } from './services/contact.service';
+import { UserService } from './services/user.service';
 
 import { AppComponent } from './components/app-root/app.component';
 import { ToolbarComponent } from './components/ui-design/toolbar/toolbar.component';
@@ -54,6 +55,7 @@ import { PopupLoginComponent } from './components/popup-login/popup-login.compon
   ],
   providers: [
     ContactService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
