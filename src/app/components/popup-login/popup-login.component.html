@@ -18,9 +18,9 @@
 <mat-divider></mat-divider>
 <div mat-dialog-actions>
     <button class="btns" mat-raised-button (click)="onCancelClick()">Cancel</button>
-    <button class="btns" mat-raised-button color="primary" [mat-dialog-close]="'yes'" cdkFocusInitial>Login</button>
+    <button class="btns" mat-raised-button color="primary" [mat-dialog-close]="userLoginInfo()" cdkFocusInitial>Login</button>
     <div class="links-container">
-        <a (click)="onLinkClick('/public/register-user')" class="links">Register</a>
-        <a (click)="onLinkClick('/public/forget-passowrd')" class="links forget-pass-spacer">Forget password?</a>
+        <a (click)="onLinkClick('register-user')" class="links">Register</a>
+        <a (click)="onLinkClick('forget-passowrd')" class="links forget-pass-spacer">Forget password?</a>
     </div>
 </div>

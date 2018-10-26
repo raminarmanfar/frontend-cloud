@@ -21,7 +21,6 @@ export class ContactService {
   }
 
   addContactInfo(contactInfo: any): Observable<ServiceResponse> {
-    console.log(contactInfo);
     return this.http.post<ServiceResponse>(Config.services.contacts, contactInfo).pipe();
   }
 }

@@ -16,13 +16,16 @@ export class PopupLoginComponent {
     private dialogRef: MatDialogRef<PopupLoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
+    userLoginInfo() {
+
+    }
+    
   onCancelClick () {
-    SharedService.isLoggedIn = true;
     this.dialogRef.close();
   }
 
   onLinkClick(linkUrl: string) {
     this.dialogRef.close();
-    this.router.navigate([linkUrl]);
+    this.router.navigate(['/public/' + linkUrl]);
   }
 }
