@@ -25,7 +25,7 @@
                 <mat-menu #menu="matMenu">
                     <div id="username-div">
                         <fa-icon [icon]="['fas', 'user']" size="lg"></fa-icon>
-                        <span class="menu-item-text">Username</span>
+                        <span class="menu-item-text">{{ loggedUserInfo.firstName }} {{ loggedUserInfo.lastName }}</span>
                     </div>
                     <mat-divider></mat-divider>
                     <button mat-menu-item>

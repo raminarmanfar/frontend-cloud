@@ -1,6 +1,6 @@
 import { ServiceResponse } from './../../../models/ServiceResponse';
-import { MatDialog, MatInput } from '@angular/material';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Component, } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
 import { DialogComponent } from '../../ui-design/dialog/dialog.component';
 
@@ -9,7 +9,7 @@ import { DialogComponent } from '../../ui-design/dialog/dialog.component';
   templateUrl: './contact-me.component.html',
   styleUrls: ['./contact-me.component.scss']
 })
-export class ContactMeComponent implements OnInit {
+export class ContactMeComponent {
   icons = [
     { tooltip: 'LinkedIn', url: 'https://de.linkedin.com/in/ramin-armanfar', image: 'linkedin.png' },
     { tooltip: 'Xing', url: 'https://www.xing.com/profile/Ramin_Armanfar', image: 'xing.png' },
@@ -21,9 +21,6 @@ export class ContactMeComponent implements OnInit {
 
   constructor(private contactService: ContactService, public dialog: MatDialog) { }
 
-  ngOnInit() {
-  }
-
   submit(contactInfo: any) {
     this.contactService.addContactInfo(contactInfo).subscribe((result: ServiceResponse) => {
       let popupData: any;
@@ -34,7 +31,7 @@ export class ContactMeComponent implements OnInit {
       }
 
       const dialogRef = this.dialog.open(DialogComponent, {
-        width: '350px',
+        width: '400px',
         data: popupData
       });
 

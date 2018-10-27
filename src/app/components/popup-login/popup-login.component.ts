@@ -22,7 +22,6 @@ export class PopupLoginComponent {
   loginClick(usernameOrEmail: string, password: string) {
       const a = this.userService.login(usernameOrEmail, password);
       a.subscribe((result: ServiceResponse) => {
-        console.log(result);
         this.dialogRef.close(result);
       }, (errObj: any)=> {
         this.error = errObj.error;
@@ -30,11 +29,15 @@ export class PopupLoginComponent {
   }
     
   onCancelClick () {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   onLinkClick(linkUrl: string) {
     this.dialogRef.close();
     this.router.navigate(['/public/' + linkUrl]);
+  }
+
+  onTextChange() {
+    this.error = false;
   }
 }

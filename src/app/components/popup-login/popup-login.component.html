@@ -3,14 +3,14 @@
     <div mat-dialog-content class="mainDiv">
         <p>Please enter your credential to login.</p>
         <mat-form-field class="full-width">
-            <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required>
+            <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required (keypress)="onTextChange()">
             <mat-error *ngIf="username.hasError('required')">
                 Email is <strong>required</strong>
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required>
+            <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required (keypress)="onTextChange()">
             <mat-error *ngIf="password.hasError('required')">
                 Password is <strong>required</strong>
             </mat-error>

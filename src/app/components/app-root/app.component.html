@@ -1,4 +1,4 @@
-<app-toolbar [isLoggedIn]="isLoggedIn" (mobBtnClick)="mobBtnClick()"></app-toolbar>
+<app-toolbar [isLoggedIn]="isLoggedIn" [loggedUserInfo]="loggedUserInfo" (mobBtnClick)="mobBtnClick()"></app-toolbar>
 <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="56" [hasBackdrop]="true">
     <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>

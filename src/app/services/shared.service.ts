@@ -10,11 +10,9 @@ import { MenuItem } from '../models/MenuItem';
 })
 export class SharedService {
   static subToolbarInfo: SubtoolbarInfo;
-  static isLoggedIn: boolean;
   static sideMenuList: Array<MenuItem>;
 
   static initialize() {
-    SharedService.isLoggedIn = false;
     SharedService.subToolbarInfo = new SubtoolbarInfo(
       'Welcome to my personal website!',
       'Ramin Armanfar'

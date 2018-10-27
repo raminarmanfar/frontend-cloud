@@ -5,6 +5,7 @@ import { SubtoolbarInfo } from 'src/app/models/subtoolbar-info';
 import { Router, NavigationEnd } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { MenuItem } from 'src/app/models/MenuItem';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnDestroy {
   @ViewChild('drawer') drawer: MatDrawer;
   get subToolbarInfo(): SubtoolbarInfo { return SharedService.subToolbarInfo; }
   set subToolbarInfo(subtoolbarInfo: SubtoolbarInfo) { SharedService.subToolbarInfo = subtoolbarInfo; }
-  get isLoggedIn(): boolean { return SharedService.isLoggedIn; }
+  get isLoggedIn(): boolean { return UserService.isLoggedIn; }
+  get loggedUserInfo(): any { return UserService.loggedUserInfo; }
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;

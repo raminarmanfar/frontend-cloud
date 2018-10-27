@@ -7,11 +7,28 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
+  public static assignLoggedUserInfo(userInfo: any) {
+    localStorage.setItem('loggedUser', JSON.stringify(userInfo));
+  }
 
-  constructor(private http: HttpClient) { }
+  public static get loggedUserToken(): string {
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    return loggedUser ? loggedUser.token : null;
+  }
+  public static get loggedUserInfo(): any {
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    return loggedUser ? loggedUser.userInfo : null;
+  }
+
+  public static get isLoggedIn(): boolean {
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    return loggedUser ? true : false;
+  }
+
+  constructor(private http: HttpClient) {}
 
   login(usernameOrEmail: string, password: string): Observable<ServiceResponse> {
-    const credentials = { user: { usernameOrEmail: usernameOrEmail, password: password } };
+    const credentials = { usernameOrEmail: usernameOrEmail, password: password };
     return this.http.post<ServiceResponse>('/api/users/login', credentials).pipe();
   }
 
@@ -24,5 +41,9 @@ export class UserService {
           reject(error);
         });
     });
+  }
+
+  registerNewUser(userInfo: any): Observable<ServiceResponse> {
+    return this.http.post<ServiceResponse>('/api/users/', userInfo).pipe();
   }
 }
