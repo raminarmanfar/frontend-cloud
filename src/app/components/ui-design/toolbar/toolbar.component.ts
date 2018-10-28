@@ -3,6 +3,7 @@ import { PopupLoginComponent } from '../../popup-login/popup-login.component';
 import { MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { ServiceResponse } from 'src/app/models/ServiceResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,7 +18,7 @@ export class ToolbarComponent {
   private username: string;
   private password: string;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   onLoginClick() {
     const dialogRef = this.dialog.open(PopupLoginComponent, {
@@ -28,12 +29,14 @@ export class ToolbarComponent {
     dialogRef.afterClosed().subscribe((result: ServiceResponse) => {
       if (result && result.success) {
         UserService.assignLoggedUserInfo(result.data);
+        this.router.navigate(['/dashboard/'])
       }
     });
   }
 
   onLogoutClick() {
     UserService.assignLoggedUserInfo(null);
+    this.router.navigate(['/']);
   }
 
   onMobListClick() {

@@ -8,7 +8,8 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   public static assignLoggedUserInfo(userInfo: any) {
-    localStorage.setItem('loggedUser', JSON.stringify(userInfo));
+    if (userInfo) localStorage.setItem('loggedUser', JSON.stringify(userInfo));
+    else localStorage.setItem('loggedUser', null);
   }
 
   public static get loggedUserToken(): string {

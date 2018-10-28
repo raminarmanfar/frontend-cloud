@@ -13,6 +13,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(fas, far);
 
+import { AdminGuard } from './auth/guards/admin.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { AuthService } from './auth/auth.service';
 import { ContactService } from './services/contact.service';
 import { UserService } from './services/user.service';
 
@@ -54,6 +57,9 @@ import { PopupLoginComponent } from './components/popup-login/popup-login.compon
     DialogComponent,
   ],
   providers: [
+    AuthService,
+    AuthGuard,
+    AdminGuard,
     ContactService,
     UserService,
   ],
