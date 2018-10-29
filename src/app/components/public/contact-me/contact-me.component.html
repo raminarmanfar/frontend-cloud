@@ -41,13 +41,11 @@
     <div>
         <h3>Other ways that you can contact me</h3>
     </div>
-    <div style="margin: 0 auto">
-        <div fxLayout="row" fxLayout.xs="column" fxFlex="100%" fxFlexFill *ngFor="let item of icons">
-            <div class="contact-items hvr-float-shadow" matTooltip="{{ item.tooltip }}" matTooltipPosition="above">
-                <a target="blank" href="{{ item.url }}">
-                    <img class="icons" src="assets/images/{{ item.image }}" alt="{{ item.image }}">
-                </a>
-            </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="10px" fxFlex="100%">
+        <div *ngFor="let item of icons" class="othe-ways-tile">
+            <a target="blank" href="{{ item.url }}" matTooltip="{{ item.tooltip }}" matTooltipPosition="above" class="contact-items hvr-float-shadow">
+                <img class="icons" src="assets/images/{{ item.image }}" alt="{{ item.image }}">
+            </a>
         </div>
     </div>
     <div class="contact-items">
