@@ -3,7 +3,7 @@
         <h3>Please fill in the following form to contact me</h3>
     </div>
     <div>
-        <form #frm="ngForm" (ngSubmit)="submit(frm.value, firstName)">
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value)">
             <mat-form-field>
                 <input type="text" matInput placeholder="First Name" ngModel name="firstName" required #firstName="ngModel">
                 <mat-error *ngIf="firstName.hasError('required')">
@@ -34,7 +34,7 @@
                     Subject is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
-            <button type="reset" mat-raised-button color="primary" (click)="submit(frm.value, firstName)">Submit</button>
+            <button type="reset" mat-raised-button color="primary" (click)="submit(frm.value)">Submit</button>
         </form>
     </div>
     <mat-divider style="margin-top: 20px;"></mat-divider>
@@ -42,7 +42,7 @@
         <h3>Other ways that you can contact me</h3>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="10px" fxFlex="100%">
-        <div *ngFor="let item of icons" class="othe-ways-tile">
+        <div *ngFor="let item of icons" class="other-ways-tile">
             <a target="blank" href="{{ item.url }}" matTooltip="{{ item.tooltip }}" matTooltipPosition="above" class="contact-items hvr-float-shadow">
                 <img class="icons" src="assets/images/{{ item.image }}" alt="{{ item.image }}">
             </a>

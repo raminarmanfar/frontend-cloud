@@ -1,0 +1,57 @@
+<div class="content" fxLayout="column" fxFlex="600px" fxFlex.xs="100%" fxFlexFill>
+    <div>
+        <h3>Your personal information</h3>
+    </div>
+    <div>
+        <form #frm="ngForm" (ngSubmit)="register(frm.value)">
+            <mat-form-field>
+                <input type="text" matInput placeholder="First Name" ngModel name="firstName" required #firstName="ngModel">
+                <mat-error *ngIf="firstName.hasError('required')">
+                    First name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input type="text" matInput placeholder="Last Name" ngModel name="lastName" required #lastName="ngModel">
+                <mat-error *ngIf="lastName.hasError('required')">
+                    Last name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input type="email" matInput placeholder="Email" ngModel name="email" required #email="ngModel" appUniqueValidator>
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                <div *ngIf="email.pending">
+                    <fa-icon [icon]="['fas', 'sync']" [spin]="true"></fa-icon><span style="margin-left: 5px;">Checking for
+            uniqueness...</span>
+                </div>
+                <mat-error *ngIf="!email.pending && email.hasError('notUnique')">
+                    Email is already used. Please choose another one.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input type="tel" matInput placeholder="Phone Number" ngModel name="phone" #phone="ngModel">
+            </mat-form-field>
+
+            <mat-form-field class="input">
+                <input type="text" matInput placeholder="Username" ngModel name="username" required #username="ngModel" appUniqueValidator>
+                <mat-error *ngIf="username.hasError('required')">
+                    Username is <strong>required</strong>
+                </mat-error>
+                <div *ngIf="username.pending">
+                    <fa-icon [icon]="['fas', 'sync']" [spin]="true"></fa-icon><span style="margin-left: 5px;">Checking for uniqueness...</span>
+                </div>
+                <mat-error *ngIf="!username.pending && username.hasError('notUnique')">
+                    Username is already used. Please choose another one.
+                </mat-error>
+            </mat-form-field>
+            <button class="btn" mat-raised-button color="primary">Update</button>
+        </form>
+    </div>
+</div>
