@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ServiceResponse } from '../models/ServiceResponse';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,8 +9,11 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   public static assignLoggedUserInfo(userInfo: any) {
-    if (userInfo) localStorage.setItem('loggedUser', JSON.stringify(userInfo));
-    else localStorage.setItem('loggedUser', null);
+    if (userInfo) {
+      localStorage.setItem('loggedUser', JSON.stringify(userInfo));
+    } else {
+      localStorage.setItem('loggedUser', null);
+    }
   }
 
   public static get loggedUserToken(): string {
@@ -26,11 +30,18 @@ export class UserService {
     return loggedUser ? true : false;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(usernameOrEmail: string, password: string): Observable<ServiceResponse> {
     const credentials = { usernameOrEmail: usernameOrEmail, password: password };
     return this.http.post<ServiceResponse>('/api/users/login', credentials).pipe();
+  }
+
+  afterLoginSuccess(result: any) {
+    if (result && result.success) {
+      UserService.assignLoggedUserInfo(result.data);
+      this.router.navigate(['/dashboard/']);
+    }
   }
 
   isAvailable(fieldName: string, value: string): Promise<boolean> {

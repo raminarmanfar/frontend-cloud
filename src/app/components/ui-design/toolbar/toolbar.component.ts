@@ -26,12 +26,7 @@ export class ToolbarComponent {
       data: { username: this.username, password: this.password }
     });
 
-    dialogRef.afterClosed().subscribe((result: ServiceResponse) => {
-      if (result && result.success) {
-        UserService.assignLoggedUserInfo(result.data);
-        this.router.navigate(['/dashboard/']);
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result: ServiceResponse) => {});
   }
 
   onLogoutClick() {

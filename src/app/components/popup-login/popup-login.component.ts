@@ -20,8 +20,9 @@ export class PopupLoginComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   loginClick(usernameOrEmail: string, password: string) {
-      const a = this.userService.login(usernameOrEmail, password);
-      a.subscribe((result: ServiceResponse) => {
+      const loginResult = this.userService.login(usernameOrEmail, password);
+      loginResult.subscribe((result: ServiceResponse) => {
+        this.userService.afterLoginSuccess(result);
         this.dialogRef.close(result);
       }, (errObj: any) => {
         this.error = errObj.error;
