@@ -26,15 +26,13 @@ export class UniqueValidatorDirective implements Validator {
     return new Promise(resolve => {
       const filedName: string = this.el.nativeElement.name;
       this.userService.isAvailable(filedName, value).then((isAvailable: boolean) => {
-        setTimeout(() => {
-          if(this.param === 'notSelf' && value === this.getCurrentVal(filedName)) {
-            resolve(null);
-          } else if (!isAvailable) {
-            resolve({ notUnique: true });
-          } else {
-            resolve(null);
-          }
-        }, 200);
+        if (this.param === 'notSelf' && value === this.getCurrentVal(filedName)) {
+          resolve(null);
+        } else if (!isAvailable) {
+          resolve({ notUnique: true });
+        } else {
+          resolve(null);
+        }
       });
     });
   }
