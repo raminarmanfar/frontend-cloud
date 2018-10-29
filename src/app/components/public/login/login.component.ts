@@ -5,7 +5,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { PopupLoginComponent } from '../../popup-login/popup-login.component';
 import { UserService } from '../../../services/user.service';
 import { ServiceResponse } from '../../../models/ServiceResponse';
-import { DialogData } from '../../../models/DialogData';
 
 @Component({
   selector: 'app-login',

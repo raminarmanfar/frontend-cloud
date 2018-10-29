@@ -1,7 +1,6 @@
 import { MatSidenav, MatDrawer } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Component, ChangeDetectorRef, ViewChild, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, ChangeDetectorRef, ViewChild, OnDestroy, HostListener } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { MenuItem } from 'src/app/models/MenuItem';
 import { UserService } from '../../services/user.service';
@@ -22,12 +21,20 @@ export class AppComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
   get menuItems(): Array<MenuItem> { return SharedService.sideMenuList; }
 
+  private screenHeight: number;
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    this.screenHeight = window.innerHeight - 56;
+    // this.screenWidth = window.innerWidth;
+  }
+
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.onResize();
   }
 
   ngOnDestroy(): void {

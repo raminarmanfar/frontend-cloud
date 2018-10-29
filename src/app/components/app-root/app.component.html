@@ -1,4 +1,4 @@
-<app-toolbar [isLoggedIn]="isLoggedIn" [loggedUserInfo]="loggedUserInfo" (mobBtnClick)="mobBtnClick()"></app-toolbar>
+<app-toolbar class="toolbar" [isLoggedIn]="isLoggedIn" [loggedUserInfo]="loggedUserInfo" (mobBtnClick)="mobBtnClick()"></app-toolbar>
 <mat-sidenav-container [style.marginTop.px]="56" [hasBackdrop]="true">
     <mat-sidenav class="sidenav-container" #snav [mode]="'push'" [fixedInViewport]="true" fixedTopGap="56">
         <mat-nav-list>
@@ -6,7 +6,7 @@
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content class="side-nav-content">
+    <mat-sidenav-content [ngStyle]="{'height': screenHeight + 'px'}" class="side-nav-content">
         <div fxLayout='column' class="main">
             <div fxFlex="0px">
             </div>
