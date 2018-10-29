@@ -5,7 +5,7 @@ import {
   AbstractControl,
   NG_ASYNC_VALIDATORS
 } from '@angular/forms';
-import { Directive, forwardRef, ElementRef } from '@angular/core';
+import { Directive, forwardRef, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[appUniqueness]',
@@ -18,6 +18,7 @@ import { Directive, forwardRef, ElementRef } from '@angular/core';
   ]
 })
 export class UniqueValidatorDirective implements Validator {
+  @Input('appUniqueness') param: string;
 
   constructor(private userService: UserService, private el: ElementRef) { }
 
@@ -26,14 +27,24 @@ export class UniqueValidatorDirective implements Validator {
       const filedName: string = this.el.nativeElement.name;
       this.userService.isAvailable(filedName, value).then((isAvailable: boolean) => {
         setTimeout(() => {
-          if (!isAvailable) {
+          if(this.param === 'notSelf' && value === this.getCurrentVal(filedName)) {
+            resolve(null);
+          } else if (!isAvailable) {
             resolve({ notUnique: true });
           } else {
             resolve(null);
           }
-        }, 100);
+        }, 200);
       });
     });
+  }
+
+  getCurrentVal(fieldName: string) {
+    switch (fieldName) {
+      case 'username': return UserService.loggedUserInfo.username;
+      case 'email': return UserService.loggedUserInfo.email;
+      default: return undefined;
+    }
   }
 
   validateUniqueObservable(value: string) {

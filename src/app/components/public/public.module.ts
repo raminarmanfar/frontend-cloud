@@ -1,3 +1,6 @@
+import { AppDirectivesModule } from './../../app-directives-modules';
+import { PasswordValidatorDirective } from './../../utils/PasswordValidator.directive';
+import { UniqueValidatorDirective } from './../../utils/UniqueValidator.directive';
 import { AppModule } from './../../app.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppMaterialsModule } from '../../app-material-module';
@@ -24,6 +27,7 @@ import { GoalsComponent } from './goals/goals.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    AppDirectivesModule,
   ],
   declarations: [
     LoginComponent,

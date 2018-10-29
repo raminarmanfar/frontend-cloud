@@ -1,4 +1,6 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-logged-user-info',
@@ -6,8 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./logged-user-info.component.scss']
 })
 export class LoggedUserInfoComponent {
+  get loggedUserInfo(): any { return UserService.loggedUserInfo; }
 
-  constructor() { }
+  constructor(private router: Router) { }
+
 
   submit(contactInfo: any) {
     /*

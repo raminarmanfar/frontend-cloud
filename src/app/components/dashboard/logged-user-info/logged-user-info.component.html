@@ -5,21 +5,21 @@
     <div>
         <form #frm="ngForm" (ngSubmit)="register(frm.value)">
             <mat-form-field>
-                <input type="text" matInput placeholder="First Name" ngModel name="firstName" required #firstName="ngModel">
+                <input type="text" matInput placeholder="First Name" [(ngModel)]="loggedUserInfo.firstName" name="firstName" required #firstName="ngModel">
                 <mat-error *ngIf="firstName.hasError('required')">
                     First name is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="text" matInput placeholder="Last Name" ngModel name="lastName" required #lastName="ngModel">
+                <input type="text" matInput placeholder="Last Name" [(ngModel)]="loggedUserInfo.lastName" name="lastName" required #lastName="ngModel">
                 <mat-error *ngIf="lastName.hasError('required')">
                     Last name is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="email" matInput placeholder="Email" ngModel name="email" required #email="ngModel" appUniqueness>
+                <input type="email" matInput placeholder="Email" [(ngModel)]="loggedUserInfo.email" name="email" required #email="ngModel" appUniqueness="notSelf">
                 <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                     Please enter a valid email address
                 </mat-error>
@@ -36,11 +36,11 @@
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="tel" matInput placeholder="Phone Number" ngModel name="phone" #phone="ngModel">
+                <input type="tel" matInput placeholder="Phone Number" [(ngModel)]="loggedUserInfo.phone" name="phone" #phone="ngModel">
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="text" matInput placeholder="Username" ngModel name="username" required #username="ngModel" appUniqueness>
+                <input type="text" matInput placeholder="Username" [(ngModel)]="loggedUserInfo.username" name="username" required #username="ngModel" appUniqueness="notSelf">
                 <mat-error *ngIf="username.hasError('required')">
                     Username is <strong>required</strong>
                 </mat-error>
@@ -51,7 +51,9 @@
                     Username is already used. Please choose another one.
                 </mat-error>
             </mat-form-field>
+            <div class="actions-container">
             <button class="btn" mat-raised-button color="primary">Update</button>
+            </div>
         </form>
     </div>
 </div>

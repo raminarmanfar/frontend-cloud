@@ -1,3 +1,4 @@
+import { AppDirectivesModule } from './../../app-directives-modules';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { DashRootComponent } from './dash-root/dash-root.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    AppDirectivesModule,
   ],
   declarations: [
     ChangePasswordComponent,

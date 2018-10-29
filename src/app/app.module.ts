@@ -1,3 +1,4 @@
+import { AppDirectivesModule } from './app-directives-modules';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,8 +29,6 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { DialogComponent } from './components/ui-design/dialog/dialog.component';
 import { PopupLoginComponent } from './components/popup-login/popup-login.component';
-import { UniqueValidatorDirective } from './utils/UniqueValidator.directive';
-import { PasswordValidatorDirective } from './utils/PasswordValidator.directive';
 
 @NgModule({
   imports: [
@@ -42,11 +41,9 @@ import { PasswordValidatorDirective } from './utils/PasswordValidator.directive'
     AppMaterialsModule,
     FontAwesomeModule,
     HttpClientModule,
+    AppDirectivesModule,
   ],
   declarations: [
-    UniqueValidatorDirective,
-    PasswordValidatorDirective,
-
     AppComponent,
     ToolbarComponent,
     NavbarComponent,
@@ -68,6 +65,6 @@ import { PasswordValidatorDirective } from './utils/PasswordValidator.directive'
     ContactService,
     UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
