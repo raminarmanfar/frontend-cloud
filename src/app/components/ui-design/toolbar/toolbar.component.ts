@@ -14,7 +14,7 @@ export class ToolbarComponent {
   @Input() isLoggedIn: boolean;
   @Input() loggedUserInfo: any;
   @Output() mobBtnClick: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+
   private username: string;
   private password: string;
 
@@ -29,7 +29,7 @@ export class ToolbarComponent {
     dialogRef.afterClosed().subscribe((result: ServiceResponse) => {
       if (result && result.success) {
         UserService.assignLoggedUserInfo(result.data);
-        this.router.navigate(['/dashboard/'])
+        this.router.navigate(['/dashboard/']);
       }
     });
   }

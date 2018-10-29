@@ -1,6 +1,6 @@
 <app-toolbar [isLoggedIn]="isLoggedIn" [loggedUserInfo]="loggedUserInfo" (mobBtnClick)="mobBtnClick()"></app-toolbar>
-<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="56" [hasBackdrop]="true">
-    <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+<mat-sidenav-container [style.marginTop.px]="56" [hasBackdrop]="true">
+    <mat-sidenav class="sidenav-container" #snav [mode]="'push'" [fixedInViewport]="true" fixedTopGap="56">
         <mat-nav-list>
             <a mat-list-item [routerLink]="[item.url]" *ngFor="let item of menuItems">{{ item.title }}</a>
         </mat-nav-list>
@@ -11,7 +11,7 @@
             <div fxFlex="0px">
             </div>
             <div fxFlex="2" class="sub-toolbar">
-                <app-sub-toolbar [info]="subToolbarInfo"></app-sub-toolbar>
+                <app-sub-toolbar></app-sub-toolbar>
             </div>
             <div fxFlex="25" [fxLayout]="direction" fxLayout.md="row" class="body">
                 <div fxFlex="50" fxFlex.md="200px" fxFlex.lg="200px" fxFlex.xl="200px" fxHide.xs fxHide.sm class="navbar">

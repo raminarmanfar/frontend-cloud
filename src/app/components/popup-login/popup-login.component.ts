@@ -23,11 +23,11 @@ export class PopupLoginComponent {
       const a = this.userService.login(usernameOrEmail, password);
       a.subscribe((result: ServiceResponse) => {
         this.dialogRef.close(result);
-      }, (errObj: any)=> {
+      }, (errObj: any) => {
         this.error = errObj.error;
       });
   }
-    
+
   onCancelClick () {
     this.dialogRef.close(null);
   }
