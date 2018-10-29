@@ -1,6 +1,6 @@
-import { Validator, NG_VALIDATORS, AbstractControl, ValidationErrors } from "@angular/forms";
-import { Directive, Input } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Validator, NG_VALIDATORS, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Directive, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Directive({
     selector: '[compare]',

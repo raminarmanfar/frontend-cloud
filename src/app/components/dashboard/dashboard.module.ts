@@ -9,8 +9,6 @@ import { AppMaterialsModule } from '../../app-material-module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoggedUserInfoComponent } from './logged-user-info/logged-user-info.component';
 import { DashRootComponent } from './dash-root/dash-root.component';
-import { UniqueValidatorDirective } from '../../utils/UniqueValidator.directive';
-import { PasswordValidatorDirective } from '../../utils/PasswordValidator.directive';
 
 @NgModule({
   imports: [
@@ -23,9 +21,6 @@ import { PasswordValidatorDirective } from '../../utils/PasswordValidator.direct
     FontAwesomeModule,
   ],
   declarations: [
-    UniqueValidatorDirective,
-    PasswordValidatorDirective,
-
     ChangePasswordComponent,
     LoggedUserInfoComponent,
     DashRootComponent,
