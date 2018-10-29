@@ -8,9 +8,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  public static assignLoggedUserInfo(userInfo: any) {
-    if (userInfo) {
-      localStorage.setItem('loggedUser', JSON.stringify(userInfo));
+  public static assignLoggedUserInfo(userInfoAndToken: any) {
+    if (userInfoAndToken) {
+      localStorage.setItem('loggedUser', JSON.stringify(userInfoAndToken));
     } else {
       localStorage.setItem('loggedUser', null);
     }
@@ -57,5 +57,13 @@ export class UserService {
 
   registerNewUser(userInfo: any): Observable<ServiceResponse> {
     return this.http.post<ServiceResponse>('/api/users/', userInfo).pipe();
+  }
+
+  updateUserInfo(userInfo: any): Observable<ServiceResponse> {
+    return this.http.put<ServiceResponse>(
+      '/api/users/current',
+      userInfo,
+      { headers: { 'x-access-token': UserService.loggedUserToken } }
+    ).pipe();
   }
 }

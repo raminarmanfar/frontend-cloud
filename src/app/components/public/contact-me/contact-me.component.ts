@@ -23,12 +23,7 @@ export class ContactMeComponent {
 
   submit(contactInfo: any) {
     this.contactService.addContactInfo(contactInfo).subscribe((result: ServiceResponse) => {
-      let popupData: any;
-      if (result.success) {
-        popupData = { title: 'Contact to the admin', message: result.message };
-      } else {
-        popupData = { title: 'Contact to the admin', message: result.message };
-      }
+      const popupData: any = { title: 'Contact to the admin', message: result.message };
 
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '400px',

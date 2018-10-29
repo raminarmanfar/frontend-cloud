@@ -1,6 +1,8 @@
+import { DialogComponent } from './../../ui-design/dialog/dialog.component';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-logged-user-info',
@@ -10,26 +12,27 @@ import { UserService } from 'src/app/services/user.service';
 export class LoggedUserInfoComponent {
   get loggedUserInfo(): any { return UserService.loggedUserInfo; }
 
-  constructor(private router: Router) { }
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog,
+    private router: Router
+  ) { }
 
 
-  submit(contactInfo: any) {
-    /*
-    this.contactService.addContactInfo(contactInfo).subscribe((result: ServiceResponse) => {
-      let popupData: any;
-      if (result.success) {
-        popupData = { title: 'Contact to the admin', message: result.message };
-      } else {
-        popupData = { title: 'Contact to the admin', message: result.message };
-      }
+  register(userInfo: any) {
+    this.userService.updateUserInfo(userInfo).subscribe(result => {
+      console.log(result);
 
+      const popupData: any = { title: 'Update user data', message: result.message };
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '400px',
         data: popupData
       });
 
-      // dialogRef.afterClosed().subscribe(dialogResult => {});
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        UserService.assignLoggedUserInfo(result.data);
+        this.router.navigate(['/dashboard/']);
+      });
     });
-    */
   }
 }
