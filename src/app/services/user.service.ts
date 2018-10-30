@@ -66,4 +66,12 @@ export class UserService {
       { headers: { 'x-access-token': UserService.loggedUserToken } }
     ).pipe();
   }
+
+  changePassword(username: string, password: string): Observable<ServiceResponse> {
+    return this.http.post<ServiceResponse>(
+      '/api/users/change-password',
+      { username, password },
+      { headers: { 'x-access-token': UserService.loggedUserToken } }
+    ).pipe();
+  }
 }

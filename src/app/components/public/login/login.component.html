@@ -9,7 +9,7 @@
             <mat-form-field class="full-width">
                 <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required (keypress)="onTextChange()">
                 <mat-error *ngIf="username.hasError('required')">
-                    Email is <strong>required</strong>
+                    Username/Email is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
@@ -19,9 +19,9 @@
                     Password is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
-            <div *ngIf="error">
-                <p class="errMessage">Error: {{ error.message }}</p>
-            </div>
+            <mat-error *ngIf="error">
+                <p class="errMessage">{{ error.message }}</p>
+            </mat-error>
         </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button color="primary" (click)="loginClick(username.value, password.value)">Login</button>

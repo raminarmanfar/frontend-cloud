@@ -14,18 +14,18 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private UserService: UserService
+    private userService: UserService
   ) { }
 
   register(userInfo: any) {
-    this.UserService.registerNewUser(userInfo).subscribe(result => {
+    this.userService.registerNewUser(userInfo).subscribe(result => {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '350px',
         data: { title: 'New User Registration', message: result.message }
       });
 
       dialogRef.afterClosed().subscribe(dialogResult => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/public/login']);
       });
     });
   }
