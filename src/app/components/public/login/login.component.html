@@ -1,36 +1,37 @@
-<div class="container">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-            <mat-card-subtitle>Please enter your credentials.</mat-card-subtitle>
-        </mat-card-header>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="Username" ngModel name="username" #username="ngModel" required (keypress)="onTextChange()">
-                <mat-error *ngIf="username.hasError('required')">
-                    Username/Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
+<form #frm="ngForm" (ngSubmit)="loginClick(frm.value)">
+    <div class="container">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Login</mat-card-title>
+                <mat-card-subtitle>Please enter your credentials.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Username" ngModel name="usernameOrEmail" #usernameOrEmail="ngModel" required (keypress)="onTextChange()">
+                    <mat-error *ngIf="usernameOrEmail.hasError('required')">
+                        Username/Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field class="full-width">
-                <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required (keypress)="onTextChange()">
-                <mat-error *ngIf="password.hasError('required')">
-                    Password is <strong>required</strong>
+                <mat-form-field class="full-width">
+                    <input type="password" matInput placeholder="Password" ngModel name="password" #password="ngModel" required (keypress)="onTextChange()">
+                    <mat-error *ngIf="password.hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="error">
+                    <p class="errMessage">{{ error.message }}</p>
                 </mat-error>
-            </mat-form-field>
-            <mat-error *ngIf="error">
-                <p class="errMessage">{{ error.message }}</p>
-            </mat-error>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="loginClick(username.value, password.value)">Login</button>
-        </mat-card-actions>
-        <mat-divider></mat-divider>
-        <div class="other-action-container">
-            <button mat-button color="primary" [routerLink]="['/public/register-user']">Register</button>
-            <button mat-button color="primary" [routerLink]="['/public/forget-passowrd']" class="keep-right">forget password?</button>
-        </div>
-    </mat-card>
-
-</div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button type="submit" mat-raised-button color="primary">Login</button>
+            </mat-card-actions>
+            <mat-divider></mat-divider>
+            <div class="other-action-container">
+                <button mat-button color="primary" [routerLink]="['/public/register-user']">Register</button>
+                <button mat-button color="primary" [routerLink]="['/public/forget-passowrd']" class="keep-right">forget password?</button>
+            </div>
+        </mat-card>
+    </div>
+</form>

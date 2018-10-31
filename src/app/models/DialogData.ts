@@ -1,4 +1,6 @@
-export interface DialogData {
-    title: string;
-    message: string;
+export class DialogData {
+  constructor(
+    public title: string,
+    public message: string
+  ) {}
   }

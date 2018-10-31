@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { ServiceResponse } from '../../../models/ServiceResponse';
+import { SharedService } from '../../../services/shared.service';
+import { DialogData } from '../../../models/DialogData';
 
 @Component({
   selector: 'app-change-password',
@@ -11,14 +14,19 @@ export class ChangePasswordComponent {
   private username = UserService.loggedUserInfo.username;
   private error: any = undefined;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private sharedService: SharedService) { }
 
-  updatePassword(credentials: any) {
+  changePassword(credentials: any) {
     if (credentials.newPassword === credentials.confirmPassword) {
-      const changePassResult = this.userService.changePassword(this.username, credentials.newPassword);
+      const changePassResult = this.userService.changePassword(this.username, credentials.currentPassword, credentials.newPassword);
       changePassResult.subscribe((changeResult: ServiceResponse) => {
-        console.log(changeResult);
         if (changeResult.success) {
+          this.sharedService.openDialog(350, new DialogData('Change Password', changeResult.message)).then(dialogResult => {
+            this.router.navigate(['/dashboard/']);
+          });
         } else {
           this.error = changeResult;
         }

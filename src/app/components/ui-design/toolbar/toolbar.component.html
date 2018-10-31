@@ -35,9 +35,9 @@
                             <fa-icon [icon]="['fas', 'key']" size="lg"></fa-icon>
                             <span class="menu-item-text">Change Password</span>
                         </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="onLogoutClick()">
                             <fa-icon [icon]="['fas', 'sign-out-alt']" size="lg"></fa-icon>
-                            <span class="menu-item-text" (click)="onLogoutClick()">Logout</span>
+                            <span class="menu-item-text">Logout</span>
                         </button>
             </mat-menu>
         </div>

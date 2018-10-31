@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { UserService } from '../../../services/user.service';
+import { SharedService } from '../../../services/shared.service';
+import { DialogData } from '../../../models/DialogData';
 
 @Component({
   selector: 'app-logged-user-info',
@@ -13,6 +15,7 @@ export class LoggedUserInfoComponent {
   get loggedUserInfo(): any { return UserService.loggedUserInfo; }
 
   constructor(
+    private sharedService: SharedService,
     private userService: UserService,
     public dialog: MatDialog,
     private router: Router
@@ -21,15 +24,8 @@ export class LoggedUserInfoComponent {
 
   register(userInfo: any) {
     this.userService.updateUserInfo(userInfo).subscribe(result => {
-      console.log(result);
-
-      const popupData: any = { title: 'Update user data', message: result.message };
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '400px',
-        data: popupData
-      });
-
-      dialogRef.afterClosed().subscribe(dialogResult => {
+      const popupData: DialogData = new DialogData('Update user data', result.message);
+      this.sharedService.openDialog(350, popupData).then(dialogResult => {
         UserService.assignLoggedUserInfo(result.data);
         this.router.navigate(['/dashboard/']);
       });

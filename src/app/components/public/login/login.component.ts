@@ -16,10 +16,14 @@ export class LoginComponent {
 
   constructor(private userService: UserService) { }
 
-  loginClick(usernameOrEmail: string, password: string) {
-    const loginResult = this.userService.login(usernameOrEmail, password);
+  loginClick(formData: any) {
+    const loginResult = this.userService.login(formData.usernameOrEmail, formData.password);
     loginResult.subscribe((result: ServiceResponse) => {
-      this.userService.afterLoginSuccess(result);
+      if (result.success) {
+        this.userService.afterLoginSuccess(result);
+      } else {
+        this.error = result;
+      }
     }, (errObj: any) => {
       this.error = errObj.error;
     });

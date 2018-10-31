@@ -19,11 +19,15 @@ export class PopupLoginComponent {
     private dialogRef: MatDialogRef<PopupLoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-  loginClick(usernameOrEmail: string, password: string) {
-      const loginResult = this.userService.login(usernameOrEmail, password);
+  loginClick(frm: any) {
+      const loginResult = this.userService.login(frm.usernameOrEmail, frm.password);
       loginResult.subscribe((result: ServiceResponse) => {
-        this.userService.afterLoginSuccess(result);
-        this.dialogRef.close(result);
+        if (result.success) {
+          this.userService.afterLoginSuccess(result);
+          this.dialogRef.close(result);
+        } else {
+          this.error = result;
+        }
       }, (errObj: any) => {
         this.error = errObj.error;
       });

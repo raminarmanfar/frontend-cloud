@@ -1,8 +1,8 @@
-import { ServiceResponse } from './../../../models/ServiceResponse';
-import { MatDialog } from '@angular/material';
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
+import { ServiceResponse } from '../../../models/ServiceResponse';
 import { ContactService } from '../../../services/contact.service';
-import { DialogComponent } from '../../ui-design/dialog/dialog.component';
+import { SharedService } from '../../../services/shared.service';
+import { DialogData } from '../../../models/DialogData';
 
 @Component({
   selector: 'app-contact-me',
@@ -19,18 +19,12 @@ export class ContactMeComponent {
     { tooltip: 'My personal page at Sabanci university', url: 'http://myweb.sabanciuniv.edu/raminarmanfar/', image: 'sabanci.jpg' }
   ];
 
-  constructor(private contactService: ContactService, public dialog: MatDialog) { }
+  constructor(private contactService: ContactService, private sharedService: SharedService) { }
 
   submit(contactInfo: any) {
     this.contactService.addContactInfo(contactInfo).subscribe((result: ServiceResponse) => {
-      const popupData: any = { title: 'Contact to the admin', message: result.message };
-
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '400px',
-        data: popupData
-      });
-
-      // dialogRef.afterClosed().subscribe(dialogResult => {});
+      const popupData: DialogData = new DialogData('Contact to the admin', result.message);
+      this.sharedService.openDialog(400, popupData);
     });
   }
 }

@@ -49,9 +49,7 @@ export class UserService {
       this.http.get<ServiceResponse>('/api/users/available/' + fieldName + '/' + value)
         .subscribe((result: ServiceResponse) => {
           resolve(result.data.isAvailable);
-        }, error => {
-          reject(error);
-        });
+        }, error => reject(error));
     });
   }
 
@@ -67,10 +65,10 @@ export class UserService {
     ).pipe();
   }
 
-  changePassword(username: string, password: string): Observable<ServiceResponse> {
+  changePassword(username: string, currentPassword: string, newPassword: string): Observable<ServiceResponse> {
     return this.http.post<ServiceResponse>(
       '/api/users/change-password',
-      { username, password },
+      { username, currentPassword, newPassword },
       { headers: { 'x-access-token': UserService.loggedUserToken } }
     ).pipe();
   }

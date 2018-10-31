@@ -38,20 +38,23 @@ export class SharedService {
     );
   }
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
   static getSubToolBarInfo(url: string) {
     const result = SharedService.subToolBarInfo.find(o => o.url === url);
     return result ? result : SharedService.subToolBarInfo.find(o => o.url === '**');
   }
 
-  openDialog(width: string, dialogData: DialogData): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: width,
-      data: dialogData
-    });
+  openDialog(width: number, dialogData: DialogData): Promise<any> {
+    return new Promise((resolve: any) => {
+      const dialogRef = this.dialog.open(DialogComponent, {
+        width: width.toString(),
+        data: dialogData
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe(result => {
+        resolve(result);
+      });
     });
   }
 }
