@@ -69,7 +69,11 @@
                     Passwords are NOT matched.
                 </mat-error>
             </mat-form-field>
-            <button class="btn" mat-raised-button color="primary">Register</button>
+            <div>
+                <input type="file" accept=".png, .jpg, .jpeg" name="photo" ng2FileSelect [uploader]="uploader" ngModel name="imageName" required #imageName="ngModel" />
+            </div>
+
+            <button class="btn" mat-raised-button color="primary" [disabled]="!uploader.getNotUploadedItems().length">Register</button>
         </form>
     </div>
 </div>
