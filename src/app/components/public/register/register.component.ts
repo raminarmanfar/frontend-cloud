@@ -13,7 +13,7 @@ import Config from '../../../Config';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  private filesToUpload: Array<File> = [];
   private uploader: FileUploader = new FileUploader({url: Config.imageUploadUrl, itemAlias: 'photo'});
 
   constructor(
@@ -31,13 +31,26 @@ export class RegisterComponent implements OnInit {
   }
 
   register(userInfo: any) {
-    console.log(userInfo);
-    this.uploader.uploadAll();
-    this.userService.registerNewUser(userInfo).subscribe(result => {
+    const formData: FormData = new FormData();
+    const files: Array<File> = this.filesToUpload;
+    formData.append('firstName', userInfo.firstName);
+    formData.append('lastName', userInfo.lastName);
+    formData.append('email', userInfo.email);
+    formData.append('phone', userInfo.phone);
+    formData.append('username', userInfo.username);
+    formData.append('password', userInfo.password);
+    formData.append('role', 'user');
+    formData.append('photo', files[0], files[0]['name']);
+    this.userService.registerNewUser(formData).subscribe(result => {
       const popupData: DialogData = new DialogData('New User Registration', result.message);
       this.sharedService.openDialog(350, popupData).then(dialogResult => {
         this.router.navigate(['/public/login']);
       });
     });
+    /**/
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 }

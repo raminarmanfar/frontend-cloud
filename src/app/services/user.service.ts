@@ -10,23 +10,23 @@ import { Injectable } from '@angular/core';
 export class UserService {
   public static assignLoggedUserInfo(userInfoAndToken: any) {
     if (userInfoAndToken) {
-      localStorage.setItem('loggedUser', JSON.stringify(userInfoAndToken));
+      sessionStorage.setItem('loggedUser', JSON.stringify(userInfoAndToken));
     } else {
-      localStorage.setItem('loggedUser', null);
+      sessionStorage.setItem('loggedUser', null);
     }
   }
 
   public static get loggedUserToken(): string {
-    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     return loggedUser ? loggedUser.token : null;
   }
   public static get loggedUserInfo(): any {
-    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     return loggedUser ? loggedUser.userInfo : null;
   }
 
   public static get isLoggedIn(): boolean {
-    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     return loggedUser ? true : false;
   }
 

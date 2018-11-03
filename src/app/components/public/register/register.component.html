@@ -70,10 +70,10 @@
                 </mat-error>
             </mat-form-field>
             <div>
-                <input type="file" accept=".png, .jpg, .jpeg" name="photo" ng2FileSelect [uploader]="uploader" ngModel name="imageName" required #imageName="ngModel" />
+                <input type="file" accept=".png, .jpg, .jpeg" name="photo" (change)="fileChangeEvent($event)" />
             </div>
 
-            <button class="btn" mat-raised-button color="primary" [disabled]="!uploader.getNotUploadedItems().length">Register</button>
+            <button class="btn" mat-raised-button color="primary">Register</button>
         </form>
     </div>
 </div>
