@@ -32,8 +32,15 @@ mat-toolbar-row {
     padding-left: 15px;
 }
 
-#username-div {
-    margin: 5px 20px;
-    padding-bottom: 5px;
+#username-container {
     cursor: default;
+    padding: 0 15px;
+    margin-bottom: 5px;
+    width: fit-content;
+}
+
+#profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
