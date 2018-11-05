@@ -39,8 +39,9 @@ export class RegisterComponent implements OnInit {
     formData.append('phone', userInfo.phone);
     formData.append('username', userInfo.username);
     formData.append('password', userInfo.password);
-    formData.append('role', 'user');
-    formData.append('photo', files[0], files[0]['name']);
+    if (files.length > 0) {
+      formData.append('photo', files[0], files[0]['name']);
+    }
     this.userService.registerNewUser(formData).subscribe(result => {
       const popupData: DialogData = new DialogData('New User Registration', result.message);
       this.sharedService.openDialog(350, popupData).then(dialogResult => {
