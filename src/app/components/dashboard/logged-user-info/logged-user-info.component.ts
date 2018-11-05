@@ -13,6 +13,7 @@ import Config from '../../../Config';
   styleUrls: ['./logged-user-info.component.scss']
 })
 export class LoggedUserInfoComponent implements OnInit {
+  private uploadImageChecked = true;
   private filesToUpload: Array<File> = [];
   private uploader: FileUploader = new FileUploader({url: Config.imageUploadUrl, itemAlias: 'photo'});
   get loggedUserInfo(): any { return UserService.loggedUserInfo; }
@@ -34,7 +35,9 @@ export class LoggedUserInfoComponent implements OnInit {
 
 
   update(userInfo: any) {
-    console.log(this.loggedUserInfo.imageUrl);
+    let oldImageUrl: string = this.loggedUserInfo.imageUrl;
+    oldImageUrl = this.uploadImageChecked ? oldImageUrl.substring(oldImageUrl.lastIndexOf('/') + 1) : '';
+
     const formData: FormData = new FormData();
     const files: Array<File> = this.filesToUpload;
     formData.append('firstName', userInfo.firstName);
@@ -42,7 +45,7 @@ export class LoggedUserInfoComponent implements OnInit {
     formData.append('email', userInfo.email);
     formData.append('phone', userInfo.phone);
     formData.append('username', userInfo.username);
-    formData.append('oldImageUrl', this.loggedUserInfo.imageUrl);
+    formData.append('oldImageUrl', oldImageUrl);
     if (files.length > 0) {
       formData.append('photo', files[0], files[0]['name']);
     }

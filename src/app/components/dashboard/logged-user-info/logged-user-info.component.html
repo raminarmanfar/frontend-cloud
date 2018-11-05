@@ -55,7 +55,8 @@
                 </mat-error>
             </mat-form-field>
             <div>
-                <input type="file" accept=".png, .jpg, .jpeg" name="photo" (change)="fileChangeEvent($event)" />
+                <mat-checkbox name="doUploadImage" id="chk" [(ngModel)]="uploadImageChecked">Upload profile image</mat-checkbox>
+                <input type="file" accept=".png, .jpg, .jpeg" name="photo" (change)="fileChangeEvent($event)" [disabled]="!uploadImageChecked" />
             </div>
             <div class="actions-container">
                 <button class="btn" mat-raised-button color="primary">Update</button>
