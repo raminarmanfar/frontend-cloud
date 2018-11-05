@@ -58,11 +58,8 @@ export class UserService {
   }
 
   updateUserInfo(userInfo: any): Observable<ServiceResponse> {
-    return this.http.put<ServiceResponse>(
-      '/api/users/current',
-      userInfo,
-      { headers: { 'x-access-token': UserService.loggedUserToken } }
-    ).pipe();
+    return this.http.put<ServiceResponse>('/api/users/current', userInfo,
+      { headers: { 'x-access-token': UserService.loggedUserToken } }).pipe();
   }
 
   changePassword(username: string, currentPassword: string, newPassword: string): Observable<ServiceResponse> {

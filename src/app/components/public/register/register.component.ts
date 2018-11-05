@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/public/login']);
       });
     });
-    /**/
   }
 
   fileChangeEvent(fileInput: any) {

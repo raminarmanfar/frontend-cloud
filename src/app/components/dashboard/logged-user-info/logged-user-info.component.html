@@ -3,7 +3,10 @@
         <h3>Your personal information</h3>
     </div>
     <div>
-        <form #frm="ngForm" (ngSubmit)="register(frm.value)">
+        <div class="img-container">
+            <img class="img-profile" src="{{ loggedUserInfo.imageUrl }}" alt="profile image">
+        </div>
+        <form #frm="ngForm" (ngSubmit)="update(frm.value)">
             <mat-form-field>
                 <input type="text" matInput placeholder="First Name" [(ngModel)]="loggedUserInfo.firstName" name="firstName" required #firstName="ngModel">
                 <mat-error *ngIf="firstName.hasError('required')">
@@ -51,6 +54,9 @@
                     Username is already used. Please choose another one.
                 </mat-error>
             </mat-form-field>
+            <div>
+                <input type="file" accept=".png, .jpg, .jpeg" name="photo" (change)="fileChangeEvent($event)" />
+            </div>
             <div class="actions-container">
                 <button class="btn" mat-raised-button color="primary">Update</button>
             </div>
