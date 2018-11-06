@@ -36,7 +36,7 @@ export class LoggedUserInfoComponent implements OnInit {
 
   update(userInfo: any) {
     let oldImageUrl: string = this.loggedUserInfo.imageUrl;
-    oldImageUrl = this.uploadImageChecked ? oldImageUrl.substring(oldImageUrl.lastIndexOf('/') + 1) : '';
+    oldImageUrl = oldImageUrl.substring(oldImageUrl.lastIndexOf('/') + 1);
 
     const formData: FormData = new FormData();
     const files: Array<File> = this.filesToUpload;
@@ -46,6 +46,7 @@ export class LoggedUserInfoComponent implements OnInit {
     formData.append('phone', userInfo.phone);
     formData.append('username', userInfo.username);
     formData.append('oldImageUrl', oldImageUrl);
+    formData.append('hasImage', this.uploadImageChecked.toString());
     if (files.length > 0) {
       formData.append('photo', files[0], files[0]['name']);
     }
