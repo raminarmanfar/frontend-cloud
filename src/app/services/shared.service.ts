@@ -1,16 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../components/ui-design/dialog/dialog.component';
 import { DialogData } from '../models/DialogData';
 import { MenuItem } from '../models/MenuItem';
 import { SubToolbarItem } from '../models/SubToolbarItem';
+import { ServiceResponse } from '../models/ServiceResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-  static sideMenuList: Array<MenuItem>;
   static subToolBarInfo: Array<SubToolbarItem>;
+  navbarMenuList: Array<MenuItem>;
 
   static initialize() {
     SharedService.subToolBarInfo = new Array<SubToolbarItem>(
@@ -27,22 +29,21 @@ export class SharedService {
       new SubToolbarItem('/dashboard/change-password', 'Change Password', 'Change your password.'),
       new SubToolbarItem('**', 'The page is under construction.', 'Thanks for your patient.')
     );
-
-    SharedService.sideMenuList = new Array<MenuItem>(
-      new MenuItem('Home', 'Home page', ''),
-      new MenuItem('Dashboard', 'Your Personal dashboard', '/dashboard'),
-      new MenuItem('Projects', 'My projects', '/public/projects'),
-      new MenuItem('Goals', 'My Goals', '/public/goals'),
-      new MenuItem('About Me', 'Breifly about my life', '/public/about-me'),
-      new MenuItem('Contact Me', 'Ways to contact me', '/public/contact-me'),
-    );
   }
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private http: HttpClient) {
+    this.getMenuList().then(menuList => this.navbarMenuList = menuList);
+  }
 
   static getSubToolBarInfo(url: string) {
     const result = SharedService.subToolBarInfo.find(o => o.url === url);
     return result ? result : SharedService.subToolBarInfo.find(o => o.url === '**');
+  }
+
+  getMenuList (): Promise<Array<MenuItem>> {
+    return new Promise((resolve: any) => this.http.get('/api/menus/').subscribe((result: ServiceResponse) => {
+      resolve(result.data);
+    }));
   }
 
   openDialog(width: number, dialogData: DialogData): Promise<any> {

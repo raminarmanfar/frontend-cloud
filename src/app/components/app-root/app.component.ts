@@ -19,7 +19,6 @@ export class AppComponent implements OnDestroy {
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  get menuItems(): Array<MenuItem> { return SharedService.sideMenuList; }
 
   private screenHeight: number;
   @HostListener('window:resize', ['$event'])
@@ -29,6 +28,7 @@ export class AppComponent implements OnDestroy {
   }
 
   constructor(
+    private sharedService: SharedService,
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -36,6 +36,8 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.onResize();
   }
+
+  get menuItems(): Array<MenuItem> { return this.sharedService.navbarMenuList; }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

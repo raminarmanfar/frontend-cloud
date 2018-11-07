@@ -3,6 +3,7 @@ import { ServiceResponse } from '../models/ServiceResponse';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserInfo } from '../models/UserInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UserService {
     const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     return loggedUser ? loggedUser.token : null;
   }
-  public static get loggedUserInfo(): any {
+  public static get loggedUserInfo(): UserInfo {
     const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
     return loggedUser ? loggedUser.userInfo : null;
   }

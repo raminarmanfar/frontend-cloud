@@ -2,10 +2,10 @@ import { FileUploader } from 'ng2-file-upload';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
-import { SharedService } from '../../../services/shared.service';
-import { DialogData } from '../../../models/DialogData';
-import Config from '../../../Config';
+import { UserService } from '../../../../services/user.service';
+import { SharedService } from '../../../../services/shared.service';
+import { DialogData } from '../../../../models/DialogData';
+import Config from '../../../../Config';
 
 @Component({
   selector: 'app-logged-user-info',

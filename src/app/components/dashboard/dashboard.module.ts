@@ -7,9 +7,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AppMaterialsModule } from '../../app-material-module';
 
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { LoggedUserInfoComponent } from './logged-user-info/logged-user-info.component';
-import { DashRootComponent } from './dash-root/dash-root.component';
+import { ChangePasswordComponent } from './for-both/change-password/change-password.component';
+import { LoggedUserInfoComponent } from './for-both/logged-user-info/logged-user-info.component';
+import { DashRootComponent } from './dashboard-user/dash-root/dash-root.component';
+import { ManageUsersComponent } from './dashboard-admin/manage-users/manage-users.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { DashRootComponent } from './dash-root/dash-root.component';
     ChangePasswordComponent,
     LoggedUserInfoComponent,
     DashRootComponent,
+    ManageUsersComponent,
   ]
 })
 export class DashboardModule { }

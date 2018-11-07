@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { UserService } from '../../../services/user.service';
-import { ServiceResponse } from '../../../models/ServiceResponse';
-import { SharedService } from '../../../services/shared.service';
-import { DialogData } from '../../../models/DialogData';
+import { UserService } from '../../../../services/user.service';
+import { ServiceResponse } from '../../../../models/ServiceResponse';
+import { SharedService } from '../../../../services/shared.service';
+import { DialogData } from '../../../../models/DialogData';
 
 @Component({
   selector: 'app-change-password',

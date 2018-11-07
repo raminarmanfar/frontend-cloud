@@ -2,9 +2,9 @@ import { AuthGuard } from '../../auth/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashRootComponent } from './dash-root/dash-root.component';
-import { LoggedUserInfoComponent } from './logged-user-info/logged-user-info.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { DashRootComponent } from './dashboard-user/dash-root/dash-root.component';
+import { LoggedUserInfoComponent } from './for-both/logged-user-info/logged-user-info.component';
+import { ChangePasswordComponent } from './for-both/change-password/change-password.component';
 
 const routes: Routes = [
   {
