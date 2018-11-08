@@ -10,6 +10,7 @@ import { UserInfo } from '../models/UserInfo';
   providedIn: 'root'
 })
 export class UserService {
+  private header = { headers: { 'x-access-token': UserService.loggedUserToken } };
   public static assignLoggedUserInfo(userInfoAndToken: any) {
     if (userInfoAndToken) {
       sessionStorage.setItem('loggedUser', JSON.stringify(userInfoAndToken));
@@ -64,15 +65,19 @@ export class UserService {
   }
 
   updateUserInfo(userInfo: any): Observable<ServiceResponse> {
-    return this.http.put<ServiceResponse>('/api/users/current', userInfo,
-      { headers: { 'x-access-token': UserService.loggedUserToken } }).pipe();
+    return this.http.put<ServiceResponse>('/api/users/current', userInfo, this.header).pipe();
   }
 
   changePassword(username: string, currentPassword: string, newPassword: string): Observable<ServiceResponse> {
-    return this.http.post<ServiceResponse>(
-      '/api/users/change-password',
-      { username, currentPassword, newPassword },
-      { headers: { 'x-access-token': UserService.loggedUserToken } }
-    ).pipe();
+    const params = { username, currentPassword, newPassword };
+    return this.http.post<ServiceResponse>('/api/users/change-password', params, this.header).pipe();
+  }
+
+  getAllUsers(): Promise<Array<UserInfo>> {
+    return new Promise((resolve: any, reject: any) => {
+      this.http.get<ServiceResponse>('/api/users/all', this.header).subscribe((result: ServiceResponse) => {
+        result.success ? resolve(result.data) : reject(result);
+      }, error => reject(error));
+    });
   }
 }
