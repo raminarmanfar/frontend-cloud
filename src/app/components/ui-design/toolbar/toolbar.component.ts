@@ -1,9 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PopupLoginComponent } from '../../popup-login/popup-login.component';
-import { MatDialog } from '@angular/material';
-import { UserService } from '../../../services/user.service';
-import { ServiceResponse } from 'src/app/models/ServiceResponse';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { PopupLoginComponent } from '../../popup-login/popup-login.component';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-toolbar',

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SubToolbarItem } from '../../../models/SubToolbarItem';
 import { Router, NavigationEnd } from '@angular/router';
-import { SharedService } from 'src/app/services/shared.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-sub-toolbar',

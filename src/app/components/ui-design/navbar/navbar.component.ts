@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'src/app/models/MenuItem';
+import { MenuItem } from '../../../models/MenuItem';
 import { SharedService } from '../../../services/shared.service';
 import { UserService } from '../../../services/user.service';
 import { UserRoleEnum } from '../../../models/enums/UserRoleEnum';

@@ -2,7 +2,7 @@ import { MatSidenav, MatDrawer } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, ChangeDetectorRef, ViewChild, OnDestroy, HostListener } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
-import { MenuItem } from 'src/app/models/MenuItem';
+import { MenuItem } from '../../models/MenuItem';
 import { UserService } from '../../services/user.service';
 
 @Component({

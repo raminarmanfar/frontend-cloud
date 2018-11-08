@@ -3,7 +3,7 @@ import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnaps
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../services/user.service';
-import { UserRoleEnum } from 'src/app/models/enums/UserRoleEnum';
+import { UserRoleEnum } from '../../models/enums/UserRoleEnum';
 
 @Injectable()
 export class AdminGuard implements CanActivate, CanActivateChild {

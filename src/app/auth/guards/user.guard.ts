@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { UserService } from '../../services/user.service';
+import { UserRoleEnum } from '../../models/enums/UserRoleEnum';
 
 @Injectable()
 export class UserGuard implements CanActivate {
@@ -18,6 +20,9 @@ export class UserGuard implements CanActivate {
     // redirect and return false
     if (!this.auth.isLoggedIn) {
       this.router.navigate(['/public/login']);
+      return false;
+    } else if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
+      this.router.navigate(['/dashboard/admin-page']);
       return false;
     }
 
