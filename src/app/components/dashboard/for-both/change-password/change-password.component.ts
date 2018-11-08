@@ -4,6 +4,7 @@ import { UserService } from '../../../../services/user.service';
 import { ServiceResponse } from '../../../../models/ServiceResponse';
 import { SharedService } from '../../../../services/shared.service';
 import { DialogData } from '../../../../models/DialogData';
+import { UserRoleEnum } from '../../../../models/enums/UserRoleEnum';
 
 @Component({
   selector: 'app-change-password',
@@ -25,7 +26,11 @@ export class ChangePasswordComponent {
       changePassResult.subscribe((changeResult: ServiceResponse) => {
         if (changeResult.success) {
           this.sharedService.openDialog(350, new DialogData('Change Password', changeResult.message)).then(dialogResult => {
-            this.router.navigate(['/dashboard/']);
+            if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
+              this.router.navigate(['/dashboard/admin-page']);
+            } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
+              this.router.navigate(['/dashboard/user-page']);
+            }
           });
         } else {
           this.error = changeResult;

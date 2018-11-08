@@ -16,9 +16,7 @@ export class NavbarComponent {
   get menuItems(): Array<MenuItem> { return this.sharedService.navbarMenuList; }
 
   checkCondition(item: MenuItem): boolean {
-    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo.role;
-    console.log(currentUserRole);
-
+    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
     return item.accessibleBy.includes(currentUserRole);
   }
 

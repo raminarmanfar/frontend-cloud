@@ -1,3 +1,4 @@
+import { UserRoleEnum } from '../models/enums/UserRoleEnum';
 import { Router } from '@angular/router';
 import { ServiceResponse } from '../models/ServiceResponse';
 import { Observable } from 'rxjs';
@@ -41,7 +42,11 @@ export class UserService {
   afterLoginSuccess(result: any) {
     if (result && result.success) {
       UserService.assignLoggedUserInfo(result.data);
-      this.router.navigate(['/dashboard/']);
+      if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
+        this.router.navigate(['/dashboard/admin-page']);
+      } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
+        this.router.navigate(['/dashboard/user-page']);
+      }
     }
   }
 

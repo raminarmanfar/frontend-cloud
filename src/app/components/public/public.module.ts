@@ -1,7 +1,4 @@
-import { AppDirectivesModule } from './../../app-directives-modules';
-import { PasswordValidatorDirective } from './../../utils/PasswordValidator.directive';
-import { UniqueValidatorDirective } from './../../utils/UniqueValidator.directive';
-import { AppModule } from './../../app.module';
+import { AppDirectivesModule } from '../../app-directives-modules';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppMaterialsModule } from '../../app-material-module';
 import { NgModule } from '@angular/core';

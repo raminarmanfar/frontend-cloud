@@ -1,4 +1,4 @@
-import { AppDirectivesModule } from './../../app-directives-modules';
+import { AppDirectivesModule } from '../../app-directives-modules';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,8 +9,9 @@ import { AppMaterialsModule } from '../../app-material-module';
 
 import { ChangePasswordComponent } from './for-both/change-password/change-password.component';
 import { LoggedUserInfoComponent } from './for-both/logged-user-info/logged-user-info.component';
-import { DashRootComponent } from './dashboard-user/dash-root/dash-root.component';
-import { ManageUsersComponent } from './dashboard-admin/manage-users/manage-users.component';
+import { ManageUsersComponent } from './for-admin/manage-users/manage-users.component';
+import { UserDashRootComponent } from './for-user/user-dash-root/user-dash-root.component';
+import { AdminDashRootComponent } from './for-admin/admin-dash-root/admin-dash-root.component';
 
 @NgModule({
   imports: [
@@ -26,8 +27,9 @@ import { ManageUsersComponent } from './dashboard-admin/manage-users/manage-user
   declarations: [
     ChangePasswordComponent,
     LoggedUserInfoComponent,
-    DashRootComponent,
     ManageUsersComponent,
+    UserDashRootComponent,
+    AdminDashRootComponent,
   ]
 })
 export class DashboardModule { }

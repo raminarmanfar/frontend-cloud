@@ -6,6 +6,7 @@ import { UserService } from '../../../../services/user.service';
 import { SharedService } from '../../../../services/shared.service';
 import { DialogData } from '../../../../models/DialogData';
 import Config from '../../../../Config';
+import { UserRoleEnum } from '../../../../models/enums/UserRoleEnum';
 
 @Component({
   selector: 'app-logged-user-info',
@@ -15,7 +16,7 @@ import Config from '../../../../Config';
 export class LoggedUserInfoComponent implements OnInit {
   private uploadImageChecked = true;
   private filesToUpload: Array<File> = [];
-  private uploader: FileUploader = new FileUploader({url: Config.imageUploadUrl, itemAlias: 'photo'});
+  private uploader: FileUploader = new FileUploader({ url: Config.imageUploadUrl, itemAlias: 'photo' });
   get loggedUserInfo(): any { return UserService.loggedUserInfo; }
 
   constructor(
@@ -28,9 +29,8 @@ export class LoggedUserInfoComponent implements OnInit {
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-         alert('File uploaded successfully');
-     };
+      alert('File uploaded successfully');
+    };
   }
 
 
@@ -54,7 +54,11 @@ export class LoggedUserInfoComponent implements OnInit {
       const popupData: DialogData = new DialogData('Update user data', result.message);
       this.sharedService.openDialog(350, popupData).then(dialogResult => {
         UserService.assignLoggedUserInfo(result.data);
-        this.router.navigate(['/dashboard/']);
+        if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
+          this.router.navigate(['/dashboard/admin-page']);
+        } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
+          this.router.navigate(['/dashboard/user-page']);
+        }
       });
     });
   }

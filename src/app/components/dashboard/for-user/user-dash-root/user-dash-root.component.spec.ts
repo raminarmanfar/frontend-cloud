@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashRootComponent } from './dash-root.component';
+import { UserDashRootComponent } from './user-dash-root.component';
 
-describe('DashRootComponent', () => {
-  let component: DashRootComponent;
-  let fixture: ComponentFixture<DashRootComponent>;
+describe('UserDashRootComponent', () => {
+  let component: UserDashRootComponent;
+  let fixture: ComponentFixture<UserDashRootComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashRootComponent ]
+      declarations: [ UserDashRootComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashRootComponent);
+    fixture = TestBed.createComponent(UserDashRootComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
