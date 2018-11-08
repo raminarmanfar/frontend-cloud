@@ -1,6 +1,6 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { UserGuard } from './auth.guard';
+import { UserGuard } from './user.guard';
 
 describe('AuthGuard', () => {
   beforeEach(() => {
