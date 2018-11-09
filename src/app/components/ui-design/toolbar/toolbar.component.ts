@@ -32,8 +32,6 @@ export class ToolbarComponent {
 
   onLogoutClick() {
     UserService.assignLoggedUserInfo(null);
-    this.sharedService.getMenuList().then(menuList => SharedService.navbarMenuItems = menuList);
-
     this.router.navigate(['/']);
   }
 

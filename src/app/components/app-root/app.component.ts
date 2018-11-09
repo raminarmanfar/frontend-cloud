@@ -36,7 +36,7 @@ export class AppComponent implements OnDestroy {
     this.onResize();
   }
 
-  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuItems; }
+  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuList; }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

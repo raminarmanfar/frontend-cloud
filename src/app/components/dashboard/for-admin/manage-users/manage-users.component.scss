@@ -1,8 +1,8 @@
-.container {
-    margin-top: 15px;
+.table-container {
+    margin-top: 55px;
 }
 
-.example-loading-shade {
+.loading-shade {
     position: absolute;
     top: 0;
     left: 0;
@@ -39,4 +39,10 @@ td.mat-column-actions {
 
 .tooltip-update {
     background: #0080ff;
+}
+
+#btn-add {
+    position: absolute;
+    top: 130px;
+    right: 10px;
 }

@@ -13,7 +13,7 @@ import { UserRoleEnum } from 'src/app/models/enums/UserRoleEnum';
   providedIn: 'root'
 })
 export class SharedService {
-  static navbarMenuItems: Array<MenuItem>;
+  private static navbarMenuItems: Array<MenuItem>;
   static subToolBarInfo: Array<SubToolbarItem>;
 
   static getSubToolBarInfo(url: string) {
@@ -41,13 +41,17 @@ export class SharedService {
     );
   }
 
+  static get navbarMenuList(): Array<MenuItem> | null {
+    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
+    return SharedService.navbarMenuItems ? SharedService.navbarMenuItems.filter(result => result.accessibleBy.includes(currentUserRole)) : null;
+  }
+
   constructor(private dialog: MatDialog, private http: HttpClient) {
     this.getMenuList().then(menuList => SharedService.navbarMenuItems = menuList);
   }
 
   getMenuList(): Promise<Array<MenuItem>> {
-    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
-    return new Promise((resolve: any) => this.http.get('/api/menus/' + currentUserRole).subscribe((result: ServiceResponse) => {
+    return new Promise((resolve: any) => this.http.get('/api/menus/').subscribe((result: ServiceResponse) => {
       resolve(result.data);
     }));
   }

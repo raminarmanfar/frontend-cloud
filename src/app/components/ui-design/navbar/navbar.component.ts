@@ -8,7 +8,7 @@ import { SharedService } from '../../../services/shared.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuItems; }
+  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuList; }
 
   constructor() { }
 }
