@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -6,13 +7,19 @@ import { DialogData } from '../models/DialogData';
 import { MenuItem } from '../models/MenuItem';
 import { SubToolbarItem } from '../models/SubToolbarItem';
 import { ServiceResponse } from '../models/ServiceResponse';
+import { UserRoleEnum } from 'src/app/models/enums/UserRoleEnum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+  static navbarMenuItems: Array<MenuItem>;
   static subToolBarInfo: Array<SubToolbarItem>;
-  navbarMenuList: Array<MenuItem>;
+
+  static getSubToolBarInfo(url: string) {
+    const result = SharedService.subToolBarInfo.find(o => o.url === url);
+    return result ? result : SharedService.subToolBarInfo.find(o => o.url === '**');
+  }
 
   static initialize() {
     SharedService.subToolBarInfo = new Array<SubToolbarItem>(
@@ -27,21 +34,20 @@ export class SharedService {
       new SubToolbarItem('/dashboard', 'Dashboard', 'Your personal dashboard'),
       new SubToolbarItem('/dashboard/logged-user-info', 'Your Personal data', 'You can update your information.'),
       new SubToolbarItem('/dashboard/change-password', 'Change Password', 'Change your password.'),
+      new SubToolbarItem('/dashboard/user-page', 'User Dashboard', 'Your personal applications.'),
+      new SubToolbarItem('/dashboard/admin-page', 'Admin Dashboard', 'Your personal applications.'),
+      new SubToolbarItem('/dashboard/manage-users', 'Users List', 'Manage users information.'),
       new SubToolbarItem('**', 'The page is under construction.', 'Thanks for your patient.')
     );
   }
 
   constructor(private dialog: MatDialog, private http: HttpClient) {
-    this.getMenuList().then(menuList => this.navbarMenuList = menuList);
+    this.getMenuList().then(menuList => SharedService.navbarMenuItems = menuList);
   }
 
-  static getSubToolBarInfo(url: string) {
-    const result = SharedService.subToolBarInfo.find(o => o.url === url);
-    return result ? result : SharedService.subToolBarInfo.find(o => o.url === '**');
-  }
-
-  getMenuList (): Promise<Array<MenuItem>> {
-    return new Promise((resolve: any) => this.http.get('/api/menus/').subscribe((result: ServiceResponse) => {
+  getMenuList(): Promise<Array<MenuItem>> {
+    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
+    return new Promise((resolve: any) => this.http.get('/api/menus/' + currentUserRole).subscribe((result: ServiceResponse) => {
       resolve(result.data);
     }));
   }

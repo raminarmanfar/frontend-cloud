@@ -1,5 +1,5 @@
 <mat-action-list>
     <div *ngFor="let item of menuItems">
-        <button mat-button *ngIf="checkCondition(item)" [routerLink]="[item.routePath]">{{ item.title }}</button>
+        <button mat-button [routerLink]="[item.routePath]">{{ item.title }}</button>
     </div>
 </mat-action-list>

@@ -28,7 +28,6 @@ export class AppComponent implements OnDestroy {
   }
 
   constructor(
-    private sharedService: SharedService,
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -37,7 +36,7 @@ export class AppComponent implements OnDestroy {
     this.onResize();
   }
 
-  get menuItems(): Array<MenuItem> { return this.sharedService.navbarMenuList; }
+  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuItems; }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

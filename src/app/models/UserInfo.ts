@@ -11,6 +11,7 @@ export class UserInfo {
         public username: string,
         public password: string,
         public role: UserRoleEnum,
-        public imageUrl: string
+        public imageUrl: string,
+        public fullName?: string
     ) {}
 }
