@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material';
 import { PopupLoginComponent } from '../../popup-login/popup-login.component';
 import { UserService } from '../../../services/user.service';
 import { SharedService } from '../../../services/shared.service';
-import { UserRoleEnum } from '../../../models/enums/UserRoleEnum';
 
 @Component({
   selector: 'app-toolbar',

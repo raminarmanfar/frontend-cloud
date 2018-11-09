@@ -75,13 +75,13 @@
 </div>
 
 <div fxHide.xs fxShow>
-    <button mat-fab color="primary" id="btn-add" matTooltip="Add new user">
+    <button mat-fab color="primary" id="btn-add" matTooltip="Add new user" (click)="onAdd()">
         <mat-icon>add</mat-icon>
     </button>
 </div>
 
 <div fxHide fxShow.xs>
-    <button mat-mini-fab color="primary" id="btn-add" matTooltip="Add new user">
+    <button mat-mini-fab color="primary" id="btn-add" matTooltip="Add new user" (click)="onAdd()">
         <mat-icon>add</mat-icon>
     </button>
 </div>

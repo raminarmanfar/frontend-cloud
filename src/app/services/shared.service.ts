@@ -16,6 +16,11 @@ export class SharedService {
   private static navbarMenuItems: Array<MenuItem>;
   static subToolBarInfo: Array<SubToolbarItem>;
 
+  static get navbarMenuList(): Array<MenuItem> | null {
+    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
+    return SharedService.navbarMenuItems ? SharedService.navbarMenuItems.filter(result => result.accessibleBy.includes(currentUserRole)) : null;
+  }
+  
   static getSubToolBarInfo(url: string) {
     const result = SharedService.subToolBarInfo.find(o => o.url === url);
     return result ? result : SharedService.subToolBarInfo.find(o => o.url === '**');
@@ -39,11 +44,6 @@ export class SharedService {
       new SubToolbarItem('/dashboard/manage-users', 'Users List', 'Manage users information.'),
       new SubToolbarItem('**', 'The page is under construction.', 'Thanks for your patient.')
     );
-  }
-
-  static get navbarMenuList(): Array<MenuItem> | null {
-    const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
-    return SharedService.navbarMenuItems ? SharedService.navbarMenuItems.filter(result => result.accessibleBy.includes(currentUserRole)) : null;
   }
 
   constructor(private dialog: MatDialog, private http: HttpClient) {

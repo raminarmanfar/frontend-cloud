@@ -1,10 +1,10 @@
-import { AppDirectivesModule } from '../../app-directives-modules';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppMaterialsModule } from '../../app-material-module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppDirectivesModule } from '../../app-directives-modules';
 
 import { PublicRoutingModule } from './public-routing.module';
 import { LoginComponent } from './login/login.component';
