@@ -1,0 +1,6 @@
+<div>
+  <app-admin-dash-root *ngIf="isUserAdmin"></app-admin-dash-root>
+</div>
+<div>
+    <app-user-dash-root *ngIf="!isUserAdmin"></app-user-dash-root>
+</div>

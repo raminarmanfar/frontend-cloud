@@ -54,11 +54,7 @@ export class LoggedUserInfoComponent implements OnInit {
       const popupData: DialogData = new DialogData('Update user data', result.message);
       this.sharedService.openDialog(350, popupData).then(dialogResult => {
         UserService.assignLoggedUserInfo(result.data);
-        if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
-          this.router.navigate(['/dashboard/admin-page']);
-        } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
-          this.router.navigate(['/dashboard/user-page']);
-        }
+        this.router.navigate(['/dashboard']);
       });
     });
   }

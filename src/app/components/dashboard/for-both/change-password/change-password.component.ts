@@ -26,11 +26,7 @@ export class ChangePasswordComponent {
       changePassResult.subscribe((changeResult: ServiceResponse) => {
         if (changeResult.success) {
           this.sharedService.openDialog(350, new DialogData('Change Password', changeResult.message)).then(dialogResult => {
-            if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
-              this.router.navigate(['/dashboard/admin-page']);
-            } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
-              this.router.navigate(['/dashboard/user-page']);
-            }
+            this.router.navigate(['/dashboard']);
           });
         } else {
           this.error = changeResult;

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../services/user.service';
 import { UserRoleEnum } from '../../models/enums/UserRoleEnum';
+import { SharedService } from '../../services/shared.service';
 
 @Injectable()
 export class UserGuard implements CanActivate {
@@ -17,16 +18,16 @@ export class UserGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      console.log(state.url);
-    // redirect and return false
+      // redirect and return false
     if (!this.auth.isLoggedIn) {
       this.router.navigate(['/public/login']);
       return false;
-    } else if (UserService.loggedUserInfo.role === UserRoleEnum.Admin && state.url === '/dashboard/user-page') {
-      this.router.navigate(['/dashboard/admin-page']);
+    } else if (SharedService.adminAndUserSharedRoutes.includes(state.url)) {
+      return true;
+    } else if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
+      this.router.navigate(['/dashboard']);
       return false;
     }
-
     return true;
   }
 }

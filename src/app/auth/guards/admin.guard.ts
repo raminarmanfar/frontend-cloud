@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../services/user.service';
 import { UserRoleEnum } from '../../models/enums/UserRoleEnum';
+import { SharedService } from '../../services/shared.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate, CanActivateChild {
@@ -21,8 +22,10 @@ export class AdminGuard implements CanActivate, CanActivateChild {
     if (!this.auth.isLoggedIn) {
       this.router.navigate(['/public/login']);
       return false;
+    } else if (SharedService.adminAndUserSharedRoutes.includes(state.url)) {
+      return true;
     } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
-      this.router.navigate(['/dashboard/user-page']);
+      this.router.navigate(['/dashboard']);
       return false;
     }
 

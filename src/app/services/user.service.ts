@@ -43,11 +43,7 @@ export class UserService {
   afterLoginSuccess(result: any) {
     if (result && result.success) {
       UserService.assignLoggedUserInfo(result.data);
-      if (UserService.loggedUserInfo.role === UserRoleEnum.Admin) {
-        this.router.navigate(['/dashboard/admin-page']);
-      } else if (UserService.loggedUserInfo.role === UserRoleEnum.User) {
-        this.router.navigate(['/dashboard/user-page']);
-      }
+      this.router.navigate(['/dashboard']);
     }
   }
 

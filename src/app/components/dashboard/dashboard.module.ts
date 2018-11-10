@@ -13,6 +13,7 @@ import { LoggedUserInfoComponent } from './for-both/logged-user-info/logged-user
 import { ManageUsersComponent } from './for-admin/manage-users/manage-users.component';
 import { UserDashRootComponent } from './for-user/user-dash-root/user-dash-root.component';
 import { AdminDashRootComponent } from './for-admin/admin-dash-root/admin-dash-root.component';
+import { DashRootComponent } from './for-both/dash-root/dash-root.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { AdminDashRootComponent } from './for-admin/admin-dash-root/admin-dash-r
     ManageUsersComponent,
     UserDashRootComponent,
     AdminDashRootComponent,
+    DashRootComponent,
   ]
 })
 export class DashboardModule { }
