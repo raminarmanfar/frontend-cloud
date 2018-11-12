@@ -4,6 +4,7 @@ import { Component, ChangeDetectorRef, ViewChild, OnDestroy, HostListener } from
 import { SharedService } from '../../services/shared.service';
 import { MenuItem } from '../../models/MenuItem';
 import { UserService } from '../../services/user.service';
+import { UserInfo } from '../../models/UserInfo';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnDestroy {
   @ViewChild('drawer') drawer: MatDrawer;
 
   get isLoggedIn(): boolean { return UserService.isLoggedIn; }
-  get loggedUserInfo(): any { return UserService.loggedUserInfo; }
+  get loggedUserInfo(): UserInfo { return UserService.loggedUserInfo; }
+  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuList; }
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -35,8 +37,6 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.onResize();
   }
-
-  get menuItems(): Array<MenuItem> { return SharedService.navbarMenuList; }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

@@ -2,7 +2,9 @@
 
 <mat-sidenav-container [style.marginTop.px]="56" [hasBackdrop]="true">
     <mat-sidenav class="sidenav-container" #snav [mode]="'push'" [fixedInViewport]="true" fixedTopGap="56">
-        <mat-nav-list>
+        <mat-nav-list style="padding: 0;">
+            <div *ngIf="isLoggedIn" class="user-fullname">{{ loggedUserInfo.fullName }}</div>
+            <img *ngIf="isLoggedIn" id="img-profile" src="{{ loggedUserInfo.imageUrl }}" alt="user profile image">
             <a mat-list-item [routerLink]="[item.routePath]" *ngFor="let item of menuItems">{{ item.title }}</a>
         </mat-nav-list>
     </mat-sidenav>
@@ -14,6 +16,8 @@
             </div>
             <div fxFlex="25" [fxLayout]="direction" fxLayout.md="row" class="body">
                 <div fxFlex="50" fxFlex.md="200px" fxFlex.lg="200px" fxFlex.xl="200px" fxHide.xs fxHide.sm class="navbar">
+                    <div *ngIf="isLoggedIn" class="user-fullname">{{ loggedUserInfo.fullName }}</div>
+                    <img *ngIf="isLoggedIn" id="img-profile" src="{{ loggedUserInfo.imageUrl }}" alt="user profile image">
                     <app-navbar></app-navbar>
                 </div>
                 <div class="body-inside">
