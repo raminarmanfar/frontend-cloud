@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { UserService } from '../../../../services/user.service';
 import { UserInfo } from '../../../../models/UserInfo';
@@ -11,7 +11,7 @@ import { DialogData } from '../../../../models/DialogData';
   styleUrls: ['./manage-users.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ManageUsersComponent {
+export class ManageUsersComponent implements OnInit {
   isLoadingResults = false;
   private usersList: Array<UserInfo>;
 
@@ -20,7 +20,9 @@ export class ManageUsersComponent {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private userService: UserService, private dialog: MatDialog) {
+  constructor(private userService: UserService, private dialog: MatDialog) { }
+
+  ngOnInit() {
     this.isLoadingResults = true;
     this.userService.getAllUsers().then((result: Array<UserInfo>) => {
       this.usersList = result;
