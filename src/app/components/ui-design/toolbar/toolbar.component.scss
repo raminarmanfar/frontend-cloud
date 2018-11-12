@@ -30,43 +30,20 @@ mat-toolbar-row {
     padding: 5px 15px 5px 15px;
 }
 
-#btn-search {
-    margin-right: 5px;
-}
-
 .menu-item-text {
     padding-left: 15px;
 }
 
-#username-container {
-    cursor: default;
-    padding: 0 15px;
-    margin-bottom: 5px;
-    width: fit-content;
-}
-
 #profile-image {
     //max-height: 50px;
-    height: 100%;
-    width: 100%;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
-    padding-top: 2px;
+    border: 1px solid red;
 }
 
-.menu-trigger {
-    cursor: pointer;
-}
-
-.loggedin-menu-container {
-    height: 55px;
-}
-
-.img-container {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    align-content: center;
-    align-items: center;
-    align-self: center;
-    text-align: center;
+#profile-info-container {
+    padding-left: 10px;
+    border: 1 px solid blue;
+    cursor: default;
 }
