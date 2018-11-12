@@ -17,9 +17,11 @@
     </button>
 
     <div *ngIf="isLoggedIn" class="loggedin-menu-container">
-        <a class="menu-trigger" [matMenuTriggerFor]="menu">
-            <img id="profile-image" src="{{ loggedUserInfo.imageUrl }}" alt="profile-image">
-        </a>
+        <div class="img-container">
+            <a class="menu-trigger" [matMenuTriggerFor]="menu">
+                <img id="profile-image" src="{{ loggedUserInfo.imageUrl }}" alt="profile-image">
+            </a>
+        </div>
         <div>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item [routerLink]="['/dashboard/logged-user-info']">

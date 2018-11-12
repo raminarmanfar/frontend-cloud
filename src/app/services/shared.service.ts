@@ -12,17 +12,24 @@ import { UserRoleEnum } from 'src/app/models/enums/UserRoleEnum';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {  
+export class SharedService {
   private static navbarMenuItems: Array<MenuItem>;
   static subToolBarInfo: Array<SubToolbarItem>;
 
   static get navbarMenuList(): Array<MenuItem> | null {
     const currentUserRole: UserRoleEnum = UserService.loggedUserInfo ? UserService.loggedUserInfo.role : UserRoleEnum.Public;
-    return SharedService.navbarMenuItems ? SharedService.navbarMenuItems.filter(result => result.accessibleBy.includes(currentUserRole)) : null;
+    return SharedService.navbarMenuItems ?
+      SharedService.navbarMenuItems.filter(result => result.accessibleBy.includes(currentUserRole)) : null;
   }
 
-  static get adminAndUserSharedRoutes(): Array<string> { return ['/dashboard', '/dashboard/logged-user-info', '/dashboard/change-password']; }
-  
+  static get adminAndUserSharedRoutes(): Array<string> {
+    return [
+      '/dashboard',
+      '/dashboard/logged-user-info',
+      '/dashboard/change-password'
+    ];
+  }
+
   static getSubToolBarInfo(url: string) {
     const result = SharedService.subToolBarInfo.find(o => o.url === url);
     return result ? result : SharedService.subToolBarInfo.find(o => o.url === '**');

@@ -31,7 +31,7 @@ mat-toolbar-row {
 }
 
 #btn-search {
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .menu-item-text {
@@ -46,8 +46,9 @@ mat-toolbar-row {
 }
 
 #profile-image {
-    width: 50px;
-    height: 50px;
+    //max-height: 50px;
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
     padding-top: 2px;
 }
@@ -58,4 +59,14 @@ mat-toolbar-row {
 
 .loggedin-menu-container {
     height: 55px;
+}
+
+.img-container {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    text-align: center;
 }
