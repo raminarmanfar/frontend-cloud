@@ -27,7 +27,7 @@
                     <span class="menu-item-text">{{ loggedUserInfo.firstName }} {{ loggedUserInfo.lastName }}</span>
                 </div>
                 <mat-divider></mat-divider>
-                <button mat-menu-item [routerLink]="['/dashboard/logged-user-info']">
+                <button mat-menu-item (click)="showLoggedUserDetailInfo()">
           <fa-icon [icon]="['fas', 'address-card']" size="lg"></fa-icon>
           <span class="menu-item-text">Your Information</span>
         </button>

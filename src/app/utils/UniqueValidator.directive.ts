@@ -39,8 +39,8 @@ export class UniqueValidatorDirective implements Validator {
 
   getCurrentVal(fieldName: string) {
     switch (fieldName) {
-      case 'username': return UserService.loggedUserInfo.username;
-      case 'email': return UserService.loggedUserInfo.email;
+      case 'username': return UserService.selectedUserInfo.username;
+      case 'email': return UserService.selectedUserInfo.email;
       default: return undefined;
     }
   }

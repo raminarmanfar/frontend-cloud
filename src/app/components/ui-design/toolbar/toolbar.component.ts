@@ -1,3 +1,4 @@
+import { DataOperation } from './../../../models/enums/DataOperationEnum';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -36,5 +37,10 @@ export class ToolbarComponent {
 
   onMobListClick() {
     this.mobBtnClick.emit(true);
+  }
+
+  showLoggedUserDetailInfo() {
+    UserService.selectedUserInfo = UserService.loggedUserInfo;
+    this.router.navigate(['/dashboard/logged-user-info/' + DataOperation.UpdateLoggedUser]);
   }
 }

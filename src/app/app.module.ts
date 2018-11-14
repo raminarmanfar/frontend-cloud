@@ -1,4 +1,3 @@
-import { PopupAddUpdateUserComponent } from './components/dashboard/for-admin/popup-add-update-user/popup-add-update-user.component';
 import { AppDirectivesModule } from './app-directives-modules';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,12 +53,10 @@ import { PopupLoginComponent } from './components/popup-login/popup-login.compon
     UnderConstructionComponent,
     DialogComponent,
     PopupLoginComponent,
-    PopupAddUpdateUserComponent,
   ],
   entryComponents: [
     DialogComponent,
     PopupLoginComponent,
-    PopupAddUpdateUserComponent,
   ],
   providers: [
     AuthService,

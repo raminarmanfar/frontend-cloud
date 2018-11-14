@@ -1,4 +1,3 @@
-import { PopupAddUpdateUserComponent } from './for-admin/popup-add-update-user/popup-add-update-user.component';
 import { AppDirectivesModule } from '../../app-directives-modules';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

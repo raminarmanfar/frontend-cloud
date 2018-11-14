@@ -1,9 +1,9 @@
+import { DataOperation } from './../../../../models/enums/DataOperationEnum';
 import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
-import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { UserService } from '../../../../services/user.service';
 import { UserInfo } from '../../../../models/UserInfo';
-import { PopupAddUpdateUserComponent } from '../popup-add-update-user/popup-add-update-user.component';
-import { DialogData } from '../../../../models/DialogData';
 
 @Component({
   selector: 'app-manage-users',
@@ -20,7 +20,7 @@ export class ManageUsersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.isLoadingResults = true;
@@ -36,26 +36,15 @@ export class ManageUsersComponent implements OnInit {
     return action + ' ' + selectedUser.fullName;
   }
 
-  raisePopup(width: number): Promise<any> {
-    return new Promise((resolve: any) => {
-      const dialogRef = this.dialog.open(PopupAddUpdateUserComponent, {
-        width: width.toString(),
-        data: {}
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        resolve(result);
-      });
-    });
-  }
-
 
   onAdd() {
-    this.raisePopup(400);
+    UserService.selectedUserInfo = new UserInfo();
+    this.router.navigate(['/dashboard/user-details/' + DataOperation.AddByAdmin]);
   }
 
   onUpdate(selectedUser: UserInfo) {
-
+    UserService.selectedUserInfo = selectedUser;
+    this.router.navigate(['/dashboard/user-details/' + DataOperation.UpdateByAdmin]);
   }
 
   onDelete(selectedUser: UserInfo) {

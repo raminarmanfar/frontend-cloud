@@ -6,8 +6,6 @@ import { UserGuard } from '../../auth/guards/user.guard';
 
 import { LoggedUserInfoComponent } from './for-both/logged-user-info/logged-user-info.component';
 import { ChangePasswordComponent } from './for-both/change-password/change-password.component';
-import { AdminDashRootComponent } from './for-admin/admin-dash-root/admin-dash-root.component';
-import { UserDashRootComponent } from './for-user/user-dash-root/user-dash-root.component';
 import { ManageUsersComponent } from './for-admin/manage-users/manage-users.component';
 import { DashRootComponent } from './for-both/dash-root/dash-root.component';
 
@@ -23,12 +21,17 @@ const routes: Routes = [
     canActivate: [AdminGuard]
   },
   {
+    path: 'user-details/:action',
+    component: LoggedUserInfoComponent,
+    canActivate: [AdminGuard]
+  },
+  {
     path: 'change-password',
     component: ChangePasswordComponent,
     canActivate: [UserGuard, AdminGuard]
   },
   {
-    path: 'logged-user-info',
+    path: 'logged-user-info/:action',
     component: LoggedUserInfoComponent,
     canActivate: [UserGuard, AdminGuard]
   },

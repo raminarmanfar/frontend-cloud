@@ -10,6 +10,10 @@ import { UserInfo } from '../models/UserInfo';
   providedIn: 'root'
 })
 export class UserService {
+  private static _selectedUserInfo: UserInfo;
+  static get selectedUserInfo(): UserInfo { return UserService._selectedUserInfo; }
+  static set selectedUserInfo(userInfo: UserInfo) { UserService._selectedUserInfo = userInfo; }
+
   private static get header(): any { return { 'x-access-token': UserService.loggedUserToken }; }
   public static assignLoggedUserInfo(userInfoAndToken: any) {
     if (userInfoAndToken) {

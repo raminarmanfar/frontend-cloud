@@ -3,26 +3,26 @@
         <h3>Your personal information</h3>
     </div>
     <div>
-        <div class="img-container">
-            <img class="img-profile" src="{{ loggedUserInfo.imageUrl }}" alt="profile image">
+        <div *ngIf="dataOperation !== 'addByAdmin'" class="img-container">
+            <img class="img-profile" src="{{ userInfo.imageUrl }}" alt="profile image">
         </div>
         <form #frm="ngForm" (ngSubmit)="update(frm.value)">
             <mat-form-field>
-                <input type="text" matInput placeholder="First Name" [(ngModel)]="loggedUserInfo.firstName" name="firstName" required #firstName="ngModel">
+                <input type="text" matInput placeholder="First Name" [(ngModel)]="userInfo.firstName" name="firstName" required #firstName="ngModel">
                 <mat-error *ngIf="firstName.hasError('required')">
                     First name is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="text" matInput placeholder="Last Name" [(ngModel)]="loggedUserInfo.lastName" name="lastName" required #lastName="ngModel">
+                <input type="text" matInput placeholder="Last Name" [(ngModel)]="userInfo.lastName" name="lastName" required #lastName="ngModel">
                 <mat-error *ngIf="lastName.hasError('required')">
                     Last name is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="email" matInput placeholder="Email" [(ngModel)]="loggedUserInfo.email" name="email" required #email="ngModel" appUniqueness="notSelf">
+                <input type="email" matInput placeholder="Email" [(ngModel)]="userInfo.email" name="email" required #email="ngModel" [appUniqueness]="dataOperation === 'addByAdmin' || dataOperation === 'registerUser' ? undefined : 'notSelf'">
                 <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                     Please enter a valid email address
                 </mat-error>
@@ -39,11 +39,11 @@
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="tel" matInput placeholder="Phone Number" [(ngModel)]="loggedUserInfo.phone" name="phone" #phone="ngModel">
+                <input type="tel" matInput placeholder="Phone Number" [(ngModel)]="userInfo.phone" name="phone" #phone="ngModel">
             </mat-form-field>
 
             <mat-form-field class="input">
-                <input type="text" matInput placeholder="Username" [(ngModel)]="loggedUserInfo.username" name="username" required #username="ngModel" appUniqueness="notSelf">
+                <input type="text" matInput placeholder="Username" [(ngModel)]="userInfo.username" name="username" required #username="ngModel" [appUniqueness]="dataOperation === 'addByAdmin' || dataOperation === 'registerUser' ? undefined : 'notSelf'">
                 <mat-error *ngIf="username.hasError('required')">
                     Username is <strong>required</strong>
                 </mat-error>
@@ -58,8 +58,12 @@
                 <mat-checkbox name="doUploadImage" id="chk" [(ngModel)]="uploadImageChecked">Upload profile image</mat-checkbox>
                 <input type="file" accept=".png, .jpg, .jpeg" name="photo" (change)="fileChangeEvent($event)" [disabled]="!uploadImageChecked" />
             </div>
+            <div *ngIf="url && uploadImageChecked" class="img-container">
+                <img class="img-profile" [src]="url">
+            </div>
             <div class="actions-container">
                 <button class="btn" mat-raised-button color="primary">Update</button>
+                <button class="btn" mat-raised-button color="accent" type="button" (click)="redirect()">Cancel</button>
             </div>
         </form>
     </div>

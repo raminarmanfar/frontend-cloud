@@ -1,3 +1,4 @@
+import { UserInfo } from './../models/UserInfo';
 import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,6 +9,7 @@ import { MenuItem } from '../models/MenuItem';
 import { SubToolbarItem } from '../models/SubToolbarItem';
 import { ServiceResponse } from '../models/ServiceResponse';
 import { UserRoleEnum } from 'src/app/models/enums/UserRoleEnum';
+import { DataOperation } from '../models/enums/DataOperationEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,7 @@ export class SharedService {
   static get adminAndUserSharedRoutes(): Array<string> {
     return [
       '/dashboard',
-      '/dashboard/logged-user-info',
+      '/dashboard/logged-user-info/' + DataOperation.UpdateLoggedUser,
       '/dashboard/change-password'
     ];
   }
@@ -51,6 +53,8 @@ export class SharedService {
       new SubToolbarItem('/dashboard', 'User Dashboard', 'Your personal applications.'),
       new SubToolbarItem('/dashboard', 'Admin Dashboard', 'Your personal applications.'),
       new SubToolbarItem('/dashboard/manage-users', 'Users List', 'Manage users information.'),
+      new SubToolbarItem('/dashboard/add-update-user/add', 'Add new user', 'Fill in the form to add new user.'),
+      new SubToolbarItem('/dashboard/add-update-user/update', 'Update selected user information', 'Modify user information.'),
       new SubToolbarItem('**', 'The page is under construction.', 'Thanks for your patient.')
     );
   }
