@@ -1,12 +1,12 @@
 <div class="content" fxLayout="column" fxFlex="600px" fxFlex.xs="100%" fxFlexFill>
     <div>
-        <h3>Your personal information</h3>
+        <h3>Detail Information</h3>
     </div>
     <div>
         <div *ngIf="dataOperation !== 'addByAdmin'" class="img-container">
             <img class="img-profile" src="{{ userInfo.imageUrl }}" alt="profile image">
         </div>
-        <form #frm="ngForm" (ngSubmit)="update(frm.value)">
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value)">
             <mat-form-field>
                 <input type="text" matInput placeholder="First Name" [(ngModel)]="userInfo.firstName" name="firstName" required #firstName="ngModel">
                 <mat-error *ngIf="firstName.hasError('required')">
@@ -54,6 +54,12 @@
                     Username is already used. Please choose another one.
                 </mat-error>
             </mat-form-field>
+            <mat-form-field class="input" *ngIf="dataOperation !== 'updateLoggedUser'">
+                <input type="password" matInput placeholder="Password" [(ngModel)]="userInfo.password" name="password" required #password="ngModel">
+                <mat-error *ngIf="password.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
             <div>
                 <mat-checkbox name="doUploadImage" id="chk" [(ngModel)]="uploadImageChecked">Upload profile image</mat-checkbox>
                 <input type="file" accept=".png, .jpg, .jpeg" name="photo" (change)="fileChangeEvent($event)" [disabled]="!uploadImageChecked" />
@@ -62,7 +68,7 @@
                 <img class="img-profile" [src]="url">
             </div>
             <div class="actions-container">
-                <button class="btn" mat-raised-button color="primary">Update</button>
+                <button class="btn" mat-raised-button color="primary">{{ btnConfirmCaption }}</button>
                 <button class="btn" mat-raised-button color="accent" type="button" (click)="redirect()">Cancel</button>
             </div>
         </form>

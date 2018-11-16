@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { UserService } from '../../services/user.service';
 import { UserRoleEnum } from '../../models/enums/UserRoleEnum';
 import { SharedService } from '../../services/shared.service';
+import { DataOperation } from '../../models/enums/DataOperationEnum';
 
 @Injectable()
 export class AdminGuard implements CanActivate, CanActivateChild {
@@ -12,7 +13,7 @@ export class AdminGuard implements CanActivate, CanActivateChild {
   constructor(
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,

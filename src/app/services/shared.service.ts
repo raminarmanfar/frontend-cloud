@@ -27,7 +27,7 @@ export class SharedService {
   static get adminAndUserSharedRoutes(): Array<string> {
     return [
       '/dashboard',
-      '/dashboard/logged-user-info/' + DataOperation.UpdateLoggedUser,
+      '/dashboard/user-details/' + DataOperation.UpdateLoggedUser,
       '/dashboard/change-password'
     ];
   }
@@ -48,7 +48,12 @@ export class SharedService {
       new SubToolbarItem('/public/register-user', 'Register', 'Register a new user.'),
       new SubToolbarItem('/public/forget-passowrd', 'Password Recovery', 'Recover your password if you don\'t remember it.'),
       new SubToolbarItem('/dashboard', 'Dashboard', 'Your personal dashboard'),
-      new SubToolbarItem('/dashboard/logged-user-info', 'Your Personal data', 'You can update your information.'),
+      new SubToolbarItem('/dashboard/user-details/' + DataOperation.UpdateLoggedUser,
+        'Update your personal data', 'Your information list to be updated.'),
+      new SubToolbarItem('/dashboard/user-details/' + DataOperation.AddByAdmin,
+        'Add new user', 'New user personal information.'),
+      new SubToolbarItem('/dashboard/user-details/' + DataOperation.UpdateByAdmin,
+        'Update selected user personal data', 'Selected user personal information to be updated.'),
       new SubToolbarItem('/dashboard/change-password', 'Change Password', 'Change your password.'),
       new SubToolbarItem('/dashboard', 'User Dashboard', 'Your personal applications.'),
       new SubToolbarItem('/dashboard', 'Admin Dashboard', 'Your personal applications.'),

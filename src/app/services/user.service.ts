@@ -68,6 +68,10 @@ export class UserService {
     return this.http.put<ServiceResponse>('/api/users/current', userInfo, { headers: UserService.header }).pipe();
   }
 
+  updateById(userId: string, userInfo: any): Observable<ServiceResponse> {
+    return this.http.put<ServiceResponse>('/api/users/' + userId, userInfo, { headers: UserService.header }).pipe();
+  }
+
   changePassword(username: string, currentPassword: string, newPassword: string): Observable<ServiceResponse> {
     const params = { username, currentPassword, newPassword };
     return this.http.post<ServiceResponse>('/api/users/change-password', params, { headers: UserService.header }).pipe();

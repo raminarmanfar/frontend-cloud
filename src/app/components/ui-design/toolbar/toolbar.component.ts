@@ -41,6 +41,6 @@ export class ToolbarComponent {
 
   showLoggedUserDetailInfo() {
     UserService.selectedUserInfo = UserService.loggedUserInfo;
-    this.router.navigate(['/dashboard/logged-user-info/' + DataOperation.UpdateLoggedUser]);
+    this.router.navigate(['/dashboard/user-details/' + DataOperation.UpdateLoggedUser]);
   }
 }

@@ -3,5 +3,4 @@ export enum DataOperation {
     UpdateByAdmin = 'updateByAdmin',
     RegisterUser = 'registerUser',
     UpdateLoggedUser = 'updateLoggedUser',
-    Delete = 'delete'
 }
